@@ -1,0 +1,63 @@
+# cluster
+project: ""
+preferManager: ""
+preferRegion: ""
+preferZone: ""
+hypervisor: ""
+network: ""
+virtualMachine:
+  preferHost: ""
+  # 主机的套餐，不能和 vcpuCount或者vmemSize 同时指定
+  # instanceType: ""
+  # 不能和instanceType同时指定，否则instanceType优先生效
+  vcpuCount: 1
+  vmemSizeGB: 1
+  
+  # 系统盘镜像大小
+  diskSizeGB: 30 
+  # 系统镜像
+  image: CentOS-7.6.1810-20190430.qcow2
+  # 存储后端类型
+  # storageBackend: ""
+  
+  # 新建EIP并绑定
+  # EIP的带宽
+  # newEipBw: 100
+  # EIP的付费类型
+  # newEipChargeType: traffic
+  # 已经存在的EIP的ID或者Name
+  # eip: ""
+  
+  # 安全组，type: []string
+  # secgroups:
+  
+  ansiblePlaybook:
+    nginx:
+      nginx_vhosts:
+        - listen: "443 ssl http2"
+          server_name: "example.com"
+          server_name_redirect: "www.example.com"
+          root: "/var/www/example.com"
+          index: "index.php index.html index.htm"
+          error_page: ""
+          access_log: ""
+          error_log: ""
+          state: "present"
+          template: "{{ nginx_vhost_template }}"
+          filename: "example.com.conf"
+          extra_parameters: |
+            location ~ \.php$ {
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+            }
+            ssl_certificate     /etc/ssl/certs/ssl-cert-snakeoil.pem;
+            ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+            ssl_protocols       TLSv1.1 TLSv1.2;
+            ssl_ciphers         HIGH:!aNULL:!MD5;
+    telegraf:
+      # required
+      influxdbUrl: ""
+      influxdbName: telegraf

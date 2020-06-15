@@ -1,11 +1,10 @@
 {{- $name := .Release.Name -}}
-{{- $node := .Values.virtualMachines.masterNode -}}
-{{- $suffix := "master" }}
-{{- $desc := "Jenkins master node" }}
+{{- $node := .Values.virtualMachine -}}
+{{- $desc := "Nginx" }}
 apiVersion: onecloud.yunion.io/v1
 kind: VirtualMachine
 metadata:
-  name: jk-{{ $name }}-{{ $suffix }}
+  name: jk-{{ $name }}
 spec:
   description: {{ $desc }}
   projectConfig:
