@@ -1,0 +1,85 @@
+{{- $playbook := .Values.virtualMachines.masterNode.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybookTemplate
+metadata:
+  name: jk-{{ .Release.Name }}-pktem-master
+spec:
+  playbook: |
+    - hosts: all
+      become: true
+
+      vars:
+        jenkins_plugins:
+          - swarm
+        jenkins_version: "2.204"
+        telegraf_agent_hostname: jk-{{ .Release.Name }}-master
+        telegraf_global_tags:
+          - tag_name: release_name
+            tag_value: {{ .Release.Name }}
+        telegraf_agent_output:
+          - type: influxdb
+            config:
+              - urls = ["{{ $playbook.telegraf.influxdbUrl }}"]
+              - database = "{{ $playbook.telegraf.influxdbName }}"
+              - insecure_skip_verify = true
+        telegraf_plugins_default:
+          - plugin: jenkins
+            config:
+              - url = "http://{{ $playbook.jenkins.hostname }}:{{ $playbook.jenkins.httpPort }}"
+              - username = "{{ $playbook.jenkins.adminUsername }}"
+              - password = "{{ $playbook.jenkins.adminPassword }}"
+              - response_timeout = "5s"
+
+      roles:
+        - role: geerlingguy.java
+        - role: ansible-role-jenkins
+        - role: ansible-telegraf
+  requirements: |
+    - src: geerlingguy.java
+    - src: https://github.com/yunionio/ansible-role-jenkins
+    - src: https://github.com/yunionio/ansible-telegraf
+  vars:
+    - name: jenkins_hostname
+      default: localhost
+    - name: jenkins_http_port
+      default: 8080
+    - name: jenkins_admin_username
+      default: admin
+    - name: jenkins_admin_password
+      default: admin
+    - name: onecloud_vm_id  
+      required: true
+
+
+{{- $count := .Values.virtualMachines.slaveNodeCount }}
+{{- if $count }}
+---
+
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybookTemplate
+metadata:
+  name: jk-{{ .Release.Name }}-pktem-slave
+spec:
+  playbook: |
+    - hosts: all
+      become: true
+
+      roles:
+        - role: geerlingguy.java
+        - role: ansible-role-jenkins-slave
+  requirements: |
+    - src: geerlingguy.java
+    - src: https://github.com/yunionio/ansible-role-jenkins-slave
+  vars:
+    - name: jenkins_slave_name
+      required: true
+    - name: jenkins_master_hostname
+      required: true
+    - name: jenkins_master_port
+      default: 8080
+    - name: jenkins_master_username
+      default: admin
+    - name: jenkins_master_password
+      default: admin
+
+{{- end }}

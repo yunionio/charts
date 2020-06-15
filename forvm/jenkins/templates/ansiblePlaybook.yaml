@@ -1,0 +1,67 @@
+{{- $namespace := .Release.Namespace }}
+{{- $name := .Release.Name }}
+{{- with .Values.virtualMachines.masterNode.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybook
+metadata:
+  name: jk-{{ $name }}-pk-master
+spec:
+  playbookTemplateRef:
+    name: jk-{{ $name }}-pktem-master
+  inventory:
+    - virtualMachine:
+        name: jk-{{ $name }}-master
+  vars:
+    jenkins_hostname: 
+      direct: {{ .jenkins.hostname }}
+    jenkins_http_port:  
+      direct: {{ .jenkins.httpPort }}
+    jenkins_admin_username: 
+      direct: {{ .jenkins.adminUsername }}
+    jenkins_admin_password: 
+      direct: {{ .jenkins.adminPassword }}
+    onecloud_vm_id:
+      indirect:
+        kind: VirtualMachine
+        namespace: {{ $namespace }}
+        name: jk-{{ $name }}-master
+        fieldPath: Status.ExternalInfo.Id
+  maxRetryTimes: 5
+{{- end}}
+
+
+{{- $count := .Values.virtualMachines.slaveNode.count }}
+{{- if $count }}
+---
+
+{{- with .Values.virtualMachines.masterNode.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybook
+metadata:
+  name: jk-{{ $name }}-pk-slave
+spec:
+  playbookTemplateRef:
+    name: jk-{{ $name }}-pktem-slave
+  inventory:
+    {{- range $i, $e := until ($count | int) }}
+    - virtualMachine:
+        name: jk-{{ $name }}-slave{{ add $e 1 }}
+      vars:
+        jenkins_slave_name:
+          direct: slave{{ add $e 1 }}
+    {{- end }}
+  vars:
+    jenkins_master_hostname:
+      indirect:
+        kind: VirtualMachine
+        namespace: {{ $namespace }}
+        name: jk-{{ $name }}-master
+        fieldPath: Status.ExternalInfo.Ips[0]
+    jenkins_master_port:
+      direct: {{ .jenkins.httpPort }}
+    jenkins_master_username:
+      direct: {{ .jenkins.adminUsername }}
+    jenkins_master_password:
+      direct: {{ .jenkins.adminPassword }}
+{{- end }}
+{{- end }}
