@@ -1,15 +1,16 @@
-{{- $vms := .Values.virtualMachines}}
 {{- $name := .Release.Name -}}
 {{- $values := .Values }}
-{{- $node := $vms.slaveNode -}}
-{{- $count := $vms.slaveNodeCount -}}
+{{- $node := .Values.virtualMachines.slaveNode -}}
+{{- $count := $node.count }}
 {{- range $i, $e := until ($count | int) }}
+{{- $suffix := printf "%s%d" "slave" (add $e 1) }}
+{{- $desc := printf "%s%d" "Jenkins slave node No." (add $e 1) }}
 apiVersion: onecloud.yunion.io/v1
 kind: VirtualMachine
 metadata:
-  name: jk-{{ $name }}-slave{{ add $e 1 }}
+  name: jk-{{ $name }}-{{ $suffix }}
 spec:
-  description: Jenkins slave node No.{{ add $e 1 }}
+  description: 
   projectConfig:
     project: {{ $values.project }}
   vmConfig:
@@ -22,8 +23,8 @@ spec:
     {{- if $values.preferZone }} 
     preferZone: {{ $values.preferZone }} 
     {{- end }}
-    {{- if $vms.preferHost }} 
-    preferHost: {{ $vms.preferHost }} 
+    {{- if $node.preferHost }} 
+    preferHost: {{ $node.preferHost }} 
     {{- end }}
     hypervisor: {{ $values.hypervisor }}
     {{- if $node.instanceType }}
@@ -39,20 +40,20 @@ spec:
       storageConfig:
         backend: {{ $node.storageBackend }}
       {{- end }}
-    {{- if $vms.network }}
+    {{- if $node.network }}
     networks:
-      - network: {{ $vms.network }}
+      - network: {{ $node.network }}
     {{- end }}
-  {{- if or $vms.newEipBw $vms.newEipChargeType }}
+  {{- if or $node.newEipBw $node.newEipChargeType }}
   newEip:
-    {{- if $vms.newEipBw }}
-    bw: {{ $vms.newEipBw }}
+    {{- if $node.newEipBw }}
+    bw: {{ $node.newEipBw }}
     {{- end }}
-    {{- if $vms.newEipChargeType }}
-    chargeType: {{ $vms.newEipChargeType }}
+    {{- if $node.newEipChargeType }}
+    chargeType: {{ $node.newEipChargeType }}
     {{- end }}
-  {{- else if $vms.eip }}
-  eip: $vms.eip
+  {{- else if $node.eip }}
+  eip: $node.eip
   {{- end}}
 
 ---
