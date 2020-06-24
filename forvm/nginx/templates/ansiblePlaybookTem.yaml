@@ -2,14 +2,14 @@
 apiVersion: onecloud.yunion.io/v1
 kind: AnsiblePlaybookTemplate
 metadata:
-  name: jk-{{ .Release.Name }}-pktem-master
+  name: ng-{{ .Release.Name }}-pktem
 spec:
   playbook: |
     - hosts: all
       become: true
 
       vars:
-        telegraf_agent_hostname: jk-{{ .Release.Name }}
+        telegraf_agent_hostname: ng-{{ .Release.Name }}
         telegraf_global_tags:
           - tag_name: release_name
             tag_value: {{ .Release.Name }}
@@ -23,7 +23,6 @@ spec:
           - plugin: nginx
             config:
               - urls = ["http://localhost/status"]
-              - response_timeout = "5s"
 
       roles:
         - role: geerlingguy.nginx

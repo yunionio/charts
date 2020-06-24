@@ -7,19 +7,22 @@ metadata:
   name: ng-{{ $name }}-pk
 spec:
   playbookTemplateRef:
-    name: jk-{{ $name }}-pktem
+    name: ng-{{ $name }}-pktem
   inventory:
     - virtualMachine:
-        name: jk-{{ $name }}
+        name: ng-{{ $name }}
   vars:
     {{- if .nginx.nginx_vhosts }}
-    nginx_vhosts: {{ .nginx.nginx_vhosts }}
+    nginx_vhosts: 
+      isYaml: true
+      value: | 
+        {{- toYaml .nginx.nginx_vhosts | nindent 8 }}
     {{- end }}
     onecloud_vm_id:
       reference:
         kind: VirtualMachine
         namespace: {{ $namespace }}
-        name: jk-{{ $name }}-master
+        name: ng-{{ $name }}
         fieldPath: Status.ExternalInfo.Id
   maxRetryTimes: 5
 {{- end}}

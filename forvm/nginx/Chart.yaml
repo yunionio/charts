@@ -1,7 +1,7 @@
 apiVersion: v2
 name: onecloud-nginx
 description: A Helm chart for Nginx on Onecloud
-icon: https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png
+icon: https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg
 
 # A chart can be either an 'application' or a 'library' chart.
 #
