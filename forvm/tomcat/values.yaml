@@ -35,8 +35,8 @@ virtualMachine:
     tomcat: 
       version: 8.5.23
       install_path: /opt
-      adminUsername: tomcat
-      adminPassword: t3mpp@ssw0rd
+      adminUsername: tomcatadmin
+      adminPassword: tomcatadmin
       port_connector: 8080
     telegraf:
       # required

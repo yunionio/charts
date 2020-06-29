@@ -1,0 +1,88 @@
+# cluster
+project: ""
+preferManager: ""
+preferRegion: ""
+preferZone: ""
+hypervisor: ""
+network: ""
+virtualMachines:
+  masterNode:
+    preferHost: ""
+    # 主机的套餐，不能和 vcpuCount或者vmemSize 同时指定
+    instanceType: ""
+    # 不能和instanceType同时指定，否则instanceType优先生效
+    # vcpuCount: 1
+    # vmemSizeGB: 1
+    
+    # 系统盘镜像大小
+    diskSizeGB: 30 
+    # 系统镜像
+    image: CentOS-7.6.1810-20190430.qcow2
+    # 存储后端类型
+    # storageBackend: ""
+    
+    # 新建EIP并绑定
+    # EIP的带宽
+    # newEipBw: 100
+    # EIP的付费类型
+    # newEipChargeType: traffic
+    # 已经存在的EIP的ID或者Name
+    # eip: ""
+    
+    # 安全组，type: []string
+    # secgroups:
+    
+    ansiblePlaybook:
+      rabbitmq:
+        config:
+        #  - queue_name: logstash
+        #    durable: true
+        #    exchange_name: logstash
+        #    type: direct
+        #    routing_key: logstash
+        #    tags: "ha-mode=all,ha-sync-mode=automatic"
+        #  - policy_pattern: ".*"
+        #    vhost: apps
+        #    tags: "ha-mode=all,ha-sync-mode=automatic"
+        debian_version: 3.7.24-1
+        redhat_version: 3.6.1
+        extra_vhosts:
+          #  - name: /
+          #    state: present
+        adminUsername: rabbitmqadmin
+        adminPassword: rabbitmqadmin
+        listen_port: 5672
+      telegraf:
+        # required
+        influxdbUrl: ""
+        influxdbName: telegraf
+  slaveNode:
+    # slave节点的数量，可以指定为0
+    count: 1
+    preferHost: ""
+    # 系统盘镜像大小
+    diskSizeGB: 30
+    # 系统镜像
+    image: CentOS-7.6.1810-20190430.qcow2
+
+    # 主机的套餐，不能和 vcpuCount或者vmemSize 同时指定
+    instanceType: ""
+    # 不能和instanceType同时指定，否则instanceType优先生效
+    #vcpuCount: 1
+    # vmemSizeGB: 1
+
+    
+    # 存储后端类型
+    # storageBackend: ""
+    
+    # 新建EIP并绑定
+    # EIP的带宽
+    # newEipBw: 100
+    # EIP的付费类型
+    # newEipChargeType: traffic
+    # 已经存在的EIP的ID或者Name
+    # eip: ""
+    
+    # 安全组，type: []string
+    # secgroups:
+
