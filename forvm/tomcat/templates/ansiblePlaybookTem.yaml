@@ -1,0 +1,47 @@
+{{- $playbook := .Values.virtualMachine.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybookTemplate
+metadata:
+  name: tm-{{ .Release.Name }}-pktem
+spec:
+  playbook: |
+    - hosts: all
+      become: true
+
+      vars:
+        tomcat_version: {{ $playbook.tomcat.version }}
+        tomcat_install_path: {{ $playbook.tomcat.install_path }}
+        tomcat_port_connector: {{ $playbook.tomcat.port_connector }}
+        tomcat_users:
+          - username: {{ $playbook.tomcat.adminUsername }}
+            password: {{ $playbook.tomcat.adminPassword }}
+            roles: "tomcat,admin,manager,manager-gui"
+        telegraf_agent_hostname: tm-{{ .Release.Name }}
+        telegraf_global_tags:
+          - tag_name: release_name
+            tag_value: {{ .Release.Name }}
+        telegraf_agent_output:
+          - type: influxdb
+            config:
+              - urls = ["{{ $playbook.telegraf.influxdbUrl }}"]
+              - database = "{{ $playbook.telegraf.influxdbName }}"
+              - insecure_skip_verify = true
+        telegraf_plugins_default:
+          - plugin: tomcat
+            config:
+              {{- if $playbook.tomcat.port_connector }}
+              - url = "http://127.0.0.1:{{ $playbook.tomcat.port_connector }}/manager/status/all?XML=true" 
+              {{- end }}
+              - username = "{{ $playbook.tomcat.adminUsername }}"
+              - password = "{{ $playbook.tomcat.adminPassword }}"
+
+      roles:
+        - role: zaxos.tomcat-ansible-role
+        - role: ansible-telegraf
+  requirements: |
+    - src: zaxos.tomcat-ansible-role
+    - src: https://github.com/yunionio/ansible-telegraf
+  vars:
+    - name: onecloud_vm_id  
+      required: true
+
