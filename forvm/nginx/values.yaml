@@ -34,7 +34,7 @@ virtualMachine:
   ansiblePlaybook:
     nginx: 
       # 设置nginx vhosts
-      nginx_vhosts: 
+      vhosts: 
       #   - listen: "443 ssl http2"
       #     server_name: "example.com"
       #     server_name_redirect: "www.example.com"

@@ -12,11 +12,11 @@ spec:
     - virtualMachine:
         name: ng-{{ $name }}
   vars:
-    {{- if .nginx.nginx_vhosts }}
+    {{- if .nginx.vhosts }}
     nginx_vhosts: 
       isYaml: true
       value: | 
-        {{- toYaml .nginx.nginx_vhosts | nindent 8 }}
+        {{- toYaml .nginx.vhosts | nindent 8 }}
     {{- end }}
     onecloud_vm_id:
       reference:
