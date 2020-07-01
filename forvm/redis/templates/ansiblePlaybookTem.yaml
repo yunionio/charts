@@ -1,0 +1,54 @@
+{{- $playbook := .Values.virtualMachines.masterNode.ansiblePlaybook }}
+{{- $count := .Values.virtualMachines.slaveNodeCount }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybookTemplate
+metadata:
+  name: rd-{{ .Release.Name }}-pktem
+spec:
+  playbook: |
+    - hosts: all
+      become: true
+
+      vars:
+        redis_version: {{ $playbook.redis.version }}
+        redis_port: {{ $playbook.redis.port }}
+        {{- if $playbook.redis.password }}
+        redis_password: {{ $playbook.redis.password }}
+        {{- end}}
+        telegraf_agent_hostname: rd-{{ .Release.Name }}-master
+        telegraf_global_tags:
+          - tag_name: release_name
+            tag_value: {{ .Release.Name }}
+        telegraf_agent_output:
+          - type: influxdb
+            config:
+              - urls = ["{{ $playbook.telegraf.influxdbUrl }}"]
+              - database = "{{ $playbook.telegraf.influxdbName }}"
+              - insecure_skip_verify = true
+        telegraf_plugins_default:
+          - plugin: redis
+            config:
+              - servers = ["tcp://localhost:{{ $playbook.redis.port }}"]
+              {{- if $playbook.redis.password }}
+              - password = "{{ $playbook.redis.password }}"
+              {{- end }}
+
+      tasks:
+        - include_role:
+            name: ansible-role-redis
+        - include_role:
+            name: ansible-telegraf
+          when: not redis_slave
+  requirements: |
+    - src: davidwittman.redis
+    - src: https://github.com/yunionio/ansible-role-redis
+    - src: https://github.com/yunionio/ansible-telegraf
+  vars:
+    - name: redis_slave
+      required: false
+    - name: redis_master_hostname
+      required: false
+    - name: onecloud_vm_id  
+      required: true
+
+

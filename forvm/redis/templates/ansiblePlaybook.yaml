@@ -1,0 +1,36 @@
+{{- $namespace := .Release.Namespace }}
+{{- $name := .Release.Name }}
+{{- $count := .Values.virtualMachines.slaveNode.count }}
+{{- with .Values.virtualMachines.masterNode.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybook
+metadata:
+  name: rd-{{ $name }}-pk
+spec:
+  playbookTemplateRef:
+    name: rd-{{ $name }}-pktem
+  inventory:
+    - virtualMachine:
+        name: rd-{{ $name }}-master
+    {{- range $i, $e := until ($count | int) }}
+    - virtualMachine:
+        name: rd-{{ $name }}-slave{{ add $e 1 }}
+      vars:
+        redis_slave: true
+    {{- end }}
+  vars:
+    redis_master_hostname:
+      reference:
+        kind: VirtualMachine
+        namespace: {{ $namespace }}
+        name: rd-{{ $name }}-master
+        fieldPath: Status.ExternalInfo.Ips[0]
+    onecloud_vm_id:
+      reference:
+        kind: VirtualMachine
+        namespace: {{ $namespace }}
+        name: rd-{{ $name }}-master
+        fieldPath: Status.ExternalInfo.Id
+  maxRetryTimes: 5
+{{- end}}
+
