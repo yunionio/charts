@@ -15,6 +15,8 @@ spec:
     {{- range $i, $e := until ($count | int) }}
     - virtualMachine:
         name: rm-{{ $name }}-slave{{ add $e 1 }}
+      vars:
+        rabbitmq_master: rm-{{ $name }}-master
     {{- end }}
   vars:
     onecloud_vm_id:
