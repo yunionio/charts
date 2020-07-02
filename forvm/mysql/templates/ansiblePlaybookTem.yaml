@@ -1,0 +1,49 @@
+{{- $playbook := .Values.virtualMachine.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybookTemplate
+metadata:
+  name: ms-{{ .Release.Name }}-pktem
+spec:
+  playbook: |
+    - hosts: all
+      become: true
+
+      vars:
+        mysql_root_password: {{ $playbook.mysql.root_password }}
+        mysql_port: {{ $playbook.mysql.port }}
+        {{- if $playbook.mysql.databases }}
+        mysql_databases:
+          {{- toYaml $playbook.mysql.databases | nindent 10 }}
+        {{- end }}
+        {{- if $playbook.mysql.users }}
+        mysql_users:
+          {{- toYaml $playbook.mysql.users | nindent 10 }}
+        {{- end }}
+        mysql_daemon: mysqld
+        mysql_version: 5.7
+        telegraf_agent_hostname: ms-{{ .Release.Name }}
+        telegraf_global_tags:
+          - tag_name: release_name
+            tag_value: {{ .Release.Name }}
+        telegraf_agent_output:
+          - type: influxdb
+            config:
+              - urls = ["{{ $playbook.telegraf.influxdbUrl }}"]
+              - database = "{{ $playbook.telegraf.influxdbName }}"
+              - insecure_skip_verify = true
+        telegraf_plugins_default:
+          - plugin: mysql
+            config:
+              - servers = ["root:{{ $playbook.mysql.password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
+
+      roles:
+        - role: lean_delivery.mysql
+        - role: ansible-telegraf
+  requirements: |
+    - src: lean_delivery.mysql
+    - src: https://github.com/yunionio/ansible-telegraf
+  vars:
+    - name: onecloud_vm_id  
+      required: true
+
+

@@ -1,0 +1,55 @@
+{{- $name := .Release.Name -}}
+{{- $node := .Values.virtualMachine -}}
+{{- $desc := "Mysql" }}
+apiVersion: onecloud.yunion.io/v1
+kind: VirtualMachine
+metadata:
+  name: ms-{{ $name }}
+spec:
+  description: {{ $desc }}
+  projectConfig:
+    project: {{ .Values.project }}
+  vmConfig:
+    {{- if .Values.preferManager }} 
+    preferManager: {{ .Values.preferManager }} 
+    {{- end }}
+    {{- if .Values.preferRegion }} 
+    preferRegion: {{ .Values.preferRegion }} 
+    {{- end }}
+    {{- if .Values.preferZone }} 
+    preferZone: {{ .Values.preferZone }} 
+    {{- end }}
+    {{- if $node.preferHost }} 
+    preferHost: {{ $node.preferHost }} 
+    {{- end }}
+    hypervisor: {{ .Values.hypervisor }}
+    {{- if $node.instanceType }}
+    instanceType: {{ $node.instanceType }}
+    {{- else }}
+    vcpuCount: {{ $node.vcpuCount }}
+    vmemSizeGB: {{ $node.vmemSizeGB }}
+    {{- end }}
+    rootDisk:
+      image: {{ $node.image }}
+      sizeGB: {{ $node.diskSizeGB }}
+      {{- if $node.storageBackend }} 
+      storageConfig:
+        backend: {{ $node.storageBackend }}
+      {{- end }}
+    {{- if $node.network }}
+    networks:
+      - network: {{ $node.network }}
+    {{- end }}
+
+  {{- if or $node.newEipBw $node.newEipChargeType }}
+  newEip:
+    {{- if $node.newEipBw }}
+    bw: {{ $node.newEipBw }}
+    {{- end }}
+    {{- if $node.newEipChargeType }}
+    chargeType: {{ $node.newEipChargeType }}
+    {{- end }}
+  {{- else if $node.eip }}
+  eip: $node.eip
+  {{- end}}
+  
