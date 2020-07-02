@@ -34,7 +34,7 @@ virtualMachines:
     
     ansiblePlaybook:
       rabbitmq:
-        config:
+        config: []
         #  - queue_name: logstash
         #    durable: true
         #    exchange_name: logstash
@@ -46,7 +46,7 @@ virtualMachines:
         #    tags: "ha-mode=all,ha-sync-mode=automatic"
         debian_version: 3.7.24-1
         redhat_version: 3.6.1
-        extra_vhosts:
+        extra_vhosts: []
           #  - name: /
           #    state: present
         adminUsername: rabbitmqadmin

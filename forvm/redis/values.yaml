@@ -36,7 +36,7 @@ virtualMachines:
       redis:
         version: 2.8.24
         port: 6379
-        password: 
+        password: redisadmin 
       telegraf:
         # required
         influxdbUrl: ""
