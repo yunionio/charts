@@ -1,0 +1,32 @@
+project: softcode-proj
+preferManager: ""
+preferRegion: 微软 China North
+preferZone: 微软 China North
+preferHost: ""
+hypervisor: azure
+network: default-1
+virtualMachines:
+  masterNode:
+    newEipBw: 100
+    newEipChargeType: traffic
+    instanceType: Basic_A1
+    diskSizeGB: 40
+    image: CentOS-CI-7.7.20191211
+    storageBackend: standard_lrs
+    ansiblePlaybook:
+      jenkins:
+        hostname: localhost
+        httpPort: 8080
+        adminUsername: admin
+        adminPassword: admin
+      telegraf:
+        influxdbUrl: https://cmp.chinaeast2.cloudapp.chinacloudapi.cn:30086
+        influxdbName: telegraf
+  slaveNode:
+    count: 2
+    newEipBw: 100
+    newEipChargeType: traffic
+    instanceType: Basic_A1
+    diskSizeGB: 30
+    image: CentOS-CI-7.7.20191211
+    storageBackend: standard_lrs
