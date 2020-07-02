@@ -1,9 +1,9 @@
 # cluster
-project: ""
+project: "system"
 preferManager: ""
 preferRegion: ""
 preferZone: ""
-hypervisor: ""
+hypervisor: "kvm"
 network: ""
 virtualMachine:
   preferHost: ""
