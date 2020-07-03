@@ -15,15 +15,13 @@ spec:
     {{- range $i, $e := until ($count | int) }}
     - virtualMachine:
         name: rm-{{ $name }}-slave{{ add $e 1 }}
-      vars:
-        rabbitmq_master: rm-{{ $name }}-master
     {{- end }}
   vars:
     onecloud_vm_id:
       reference:
         kind: VirtualMachine
         namespace: {{ $namespace }}
-        name: jk-{{ $name }}-master
+        name: rm-{{ $name }}-master
         fieldPath: Status.ExternalInfo.Id
   maxRetryTimes: 5
 {{- end}}

@@ -34,7 +34,7 @@ spec:
         telegraf_plugins_default:
           - plugin: mysql
             config:
-              - servers = ["root:{{ $playbook.mysql.password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
+              - servers = ["root:{{ $playbook.mysql.root_password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
 
       roles:
         - role: lean_delivery.mysql

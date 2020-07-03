@@ -10,7 +10,7 @@ kind: VirtualMachine
 metadata:
   name: jk-{{ $name }}-{{ $suffix }}
 spec:
-  description: 
+  description: {{ $desc }}
   projectConfig:
     project: {{ $values.project }}
   vmConfig:

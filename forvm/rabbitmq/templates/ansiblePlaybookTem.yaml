@@ -15,6 +15,7 @@ spec:
           {{- toYaml .playbook.rabbitmq.config | nindent 8 }}
         {{- end }}
         rabbitmq_enable_clustering: true
+        rabbitmq_master: rm-{{ .Release.Name }}-master
         rabbitmq_debian_version: {{ $playbook.rabbitmq.debian_version }}
         rabbitmq_redhat_version: {{ $playbook.rabbitmq.redhat_version }}
         rabbitmq_listen_port: {{ $playbook.rabbitmq.listen_port }}
@@ -43,24 +44,19 @@ spec:
         telegraf_plugins_default:
           - plugin: rabbitmq
             config:
-              username = "{{ $playbook.rabbitmq.adminUsername }}"
-              password = "{{ $playbook.rabbitmq.adminPassword }}"
+              - username = "{{ $playbook.rabbitmq.adminUsername }}"
+              - password = "{{ $playbook.rabbitmq.adminPassword }}"
 
       tasks:
         - include_role:
             name: mrlesmithjr.rabbitmq 
         - include_role:
             name: ansible-telegraf
-          when: rabbitmq_master is undefined
-      roles:
-        - role: mrlesmithjr.rabbitmq
-        - role: ansible-telegraf
+          when: inventory_hostname == rabbitmq_master
   requirements: |
     - src: mrlesmithjr.rabbitmq
     - src: https://github.com/yunionio/ansible-telegraf
   vars:
-    - name: rabbitmq_master
-      required: true
     - name: onecloud_vm_id  
       required: true
 

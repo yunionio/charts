@@ -22,7 +22,7 @@ spec:
         telegraf_plugins_default:
           - plugin: nginx
             config:
-              - urls = ["http://localhost/status"]
+              - urls = ["http://localhost/server_status"]
 
       roles:
         - role: geerlingguy.nginx

@@ -38,7 +38,7 @@ spec:
             name: ansible-role-redis
         - include_role:
             name: ansible-telegraf
-          when: not redis_slave
+          when: not redis_slave == "true"
   requirements: |
     - src: davidwittman.redis
     - src: https://github.com/yunionio/ansible-role-redis

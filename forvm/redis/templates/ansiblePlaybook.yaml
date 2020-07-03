@@ -12,11 +12,15 @@ spec:
   inventory:
     - virtualMachine:
         name: rd-{{ $name }}-master
+      vars:
+        redis_slave:
+          value: "false"
     {{- range $i, $e := until ($count | int) }}
     - virtualMachine:
         name: rd-{{ $name }}-slave{{ add $e 1 }}
       vars:
-        redis_slave: true
+        redis_slave: 
+          value: "true"
     {{- end }}
   vars:
     redis_master_hostname:

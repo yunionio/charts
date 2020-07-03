@@ -51,7 +51,7 @@ spec:
       required: true
 
 
-{{- $count := .Values.virtualMachines.slaveNodeCount }}
+{{- $count := .Values.virtualMachines.slaveNode.count }}
 {{- if $count }}
 ---
 

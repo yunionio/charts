@@ -36,9 +36,9 @@ virtualMachine:
       root_password: Super_P@s$0rd
       port: 3306
       databases: []
-        - name: example_db
-          encoding: latin1
-          collation: latin1_general_ci
+        # - name: example_db
+        #   encoding: latin1
+        #   collation: latin1_general_ci
       users: []
         # - name: example2_user
         #   host: "%"
