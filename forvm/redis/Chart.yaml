@@ -1,7 +1,7 @@
 
 apiVersion: v2
 name: onecloud-redis
-description: A Helm chart for Redis or Mariadb on Onecloud
+description: A Helm chart for Redis on Onecloud
 icon: https://redis.io/images/redis.png
 
 # A chart can be either an 'application' or a 'library' chart.
