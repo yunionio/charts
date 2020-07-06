@@ -1,0 +1,18 @@
+{{- $playbook := .Values.virtualMachine.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybookTemplate
+metadata:
+  name: cboard-{{ .Release.Name }}-pktem
+spec:
+  playbook: |
+    - hosts: all
+      become: true
+      roles:
+        - role: cboard
+  requirements: |
+    - src: https://github.com/yunionio/ansible-cboard
+  vars:
+    - name: port
+      required: false
+    - name: onecloud_vm_id
+      required: true
