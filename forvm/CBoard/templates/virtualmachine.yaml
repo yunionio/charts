@@ -30,9 +30,15 @@ spec:
     vmemSizeGB: {{ $node.vmemSizeGB }}
     {{- end }}
     rootDisk:
+      {{- if $node.image }}
       image: {{ $node.image }}
+      {{- else if eq .Values.hypervisor "azure" }}
+      image: CentOS-CI-7.7.20191211
+      {{- else }}
+      image: CentOS-7.6.1810-20190430.qcow2
+      {{- end }}
       sizeGB: {{ $node.diskSizeGB }}
-      {{- if $node.storageBackend }}
+      {{- if $node.storageBackend }} 
       storageConfig:
         backend: {{ $node.storageBackend }}
       {{- end }}
@@ -51,4 +57,33 @@ spec:
     {{- end }}
   {{- else if $node.eip }}
   eip: $node.eip
+  {{- else if eq .Values.hypervisor "aliyun" }}
+  newEip:
+    bw: 100
+    chargeType: traffic
+  {{- else if eq .Values.hypervisor "qcloud" }}
+  newEip:
+    bw: 100
+    chargeType: traffic
+  {{- else if eq .Values.hypervisor "azure" }}
+  newEip:
+    bw: 100
+    chargeType: traffic
+  {{- else if eq .Values.hypervisor "aws" }}
+  newEip:
+    bw: 100
+    chargeType: traffic
+  {{- else if eq .Values.hypervisor "huawei"}}
+  newEip:
+    bw: 100
+    chargeType: traffic
+  {{- else if eq .Values.hypervisor "ucloud"}}
+  newEip:
+    bw: 100
+    chargeType: traffic
+  {{- else if eq .Values.hypervisor "google"}}
+  newEip:
+    bw: 100
+    chargeType: traffic
   {{- end}}
+
