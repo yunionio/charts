@@ -1,0 +1,52 @@
+# cluster
+project: "system"
+preferManager: ""
+preferRegion: ""
+preferZone: ""
+hypervisor: "kvm"
+network: ""
+virtualMachine:
+  preferHost: ""
+  # 主机的套餐，不能和 vcpuCount或者vmemSize 同时指定
+  # instanceType: ""
+  # 不能和instanceType同时指定，否则instanceType优先生效
+  vcpuCount: 1
+  vmemSizeGB: 1
+  
+  # 系统盘镜像大小
+  diskSizeGB: 30 
+  # 系统镜像
+  # image: CentOS-7.6.1810-20190430.qcow2
+  # 存储后端类型
+  storageBackend: "local"
+  
+  # 新建EIP并绑定
+  # EIP的带宽
+  # newEipBw: 100
+  # EIP的付费类型
+  # newEipChargeType: traffic
+  # 已经存在的EIP的ID或者Name
+  # eip: ""
+  
+  # 安全组，type: []string
+  # secgroups:
+  
+  ansiblePlaybook:
+
+    influxdb:    
+      adminUsername: admin
+      adminPassword: admin
+      http_port: 8086
+      databases: []
+        # - host: localhost
+        #   name: my_db
+        #   state: present
+      users:
+        # - database: my_db
+        #   name: rain
+        #   password: rainzm
+        #   grant: ALL
+    telegraf:
+      # required
+      influxdbUrl: ""
+      influxdbName: telegraf

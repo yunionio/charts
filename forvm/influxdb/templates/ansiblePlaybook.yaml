@@ -1,0 +1,23 @@
+{{- $namespace := .Release.Namespace }}
+{{- $name := .Release.Name }}
+{{- with .Values.virtualMachine.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybook
+metadata:
+  name: ix-{{ $name }}-pk
+spec:
+  playbookTemplateRef:
+    name: ix-{{ $name }}-pktem
+  inventory:
+    - virtualMachine:
+        name: ix-{{ $name }}
+  vars:
+    onecloud_vm_id:
+      reference:
+        kind: VirtualMachine
+        namespace: {{ $namespace }}
+        name: ng-{{ $name }}
+        fieldPath: Status.ExternalInfo.Id
+  maxRetryTimes: 5
+{{- end}}
+
