@@ -1,0 +1,24 @@
+{{- $namespace := .Release.Namespace }}
+{{- $name := .Release.Name }}
+{{- with .Values.virtualMachine.ansiblePlaybook }}
+apiVersion: onecloud.yunion.io/v1
+kind: AnsiblePlaybook
+metadata:
+  name: cboard-{{ $name }}-pk
+spec:
+  playbookTemplateRef:
+    name: cboard-{{ $name }}-pktem
+  inventory:
+    - virtualMachine:
+        name: cboard-{{ $name }}
+  vars:
+    port:
+      value: {{ .cboard.port }}
+    onecloud_vm_id:
+      reference:
+        kind: VirtualMachine
+        namespace: {{ $namespace }}
+        name: cboard-{{ $name }}
+        fieldPath: Status.ExternalInfo.Id
+  maxRetryTimes: 5
+{{- end}}
