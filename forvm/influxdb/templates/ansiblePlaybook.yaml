@@ -16,7 +16,7 @@ spec:
       reference:
         kind: VirtualMachine
         namespace: {{ $namespace }}
-        name: ng-{{ $name }}
+        name: ix-{{ $name }}
         fieldPath: Status.ExternalInfo.Id
   maxRetryTimes: 5
 {{- end}}
