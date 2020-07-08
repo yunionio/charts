@@ -1,0 +1,128 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "project",
+        "hypervisor",
+        "preferRegion",
+        "preferZone",
+        "network",
+        "virtualMachine"
+    ],
+    "properties": {
+        "project": {
+            "title": "项目",
+            "description": "请输入项目的ID或者Name",
+            "type": "string"
+        },
+        "hypervisor": {
+            "title": "平台",
+            "description": "平台",
+            "type": "string"
+        },
+        "preferRegion": {
+            "title": "区域",
+            "description": "请输入区域的ID或者Name",
+            "componentType": "CloudregionList",
+            "type": "string"
+        },
+        "preferZone": {
+            "title": "可用区",
+            "description": "请输入可用区的ID或者Name",
+            "componentType": "ZoneList",
+            "type": "string"
+        },
+        "network": {
+            "title": "网络",
+            "description": "请输入网络的ID或者Name",
+            "componentType": "NetworkList",
+            "type": "string"
+        },
+        "virtualMachine": {
+            "type": "object",
+            "title": "虚拟机配置",
+            "required": [
+                "instanceType",
+                "image",
+                "diskSizeGB",
+                "storageBackend",
+                "ansiblePlaybook"
+            ],
+            "properties": {
+                "instanceType": {
+                    "title": "套餐",
+                    "description": "请输入创建主机套餐的名字",
+                    "componentType": "SKUList",
+                    "type": "string"
+                },
+                "diskSizeGB": {
+                    "title": "磁盘大小",
+                    "description": "请输入磁盘的大小，单位GB",
+                    "default": 30,
+                    "type": "integer"
+                },
+                "storageBackend": {
+                    "title": "存储类型",
+                    "description": "磁盘的后端存储类型",
+                    "componentType": "StorageBackendList",
+                    "type": "string"
+                },
+                "ansiblePlaybook": {
+                    "type": "object",
+                    "title": "应用配置",
+                    "properties": {
+                        "tomcat": {
+                            "type": "object",
+                            "title": "Tomcat配置",
+                            "required": [
+                                "port_connector",
+                                "adminUsername",
+                                "adminPassword"
+                            ],
+                            "properties": {
+                                "version": {
+                                    "title": "版本",
+                                    "default": "8.5.23",
+                                    "type": "string"
+                                },
+                                "port_connector": {
+                                    "title": "端口",
+                                    "default": 8080,
+                                    "type": "integer"
+                                },
+                                "adminUsername": {
+                                    "title": "管理员用户名",
+                                    "default": "admin",
+                                    "type": "string"
+                                },
+                                "adminPassword": {
+                                    "title": "管理员密码",
+                                    "default": "admin",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "telegraf": {
+                            "type": "object",
+                            "title": "监控配置",
+                            "required": [
+                                "influxdbName",
+                                "influxdbUrl"
+                            ],
+                            "properties": {
+                                "influxdbName": {
+                                    "title": "InfluxDB数据库名字",
+                                    "type": "string"
+                                },
+                                "influxdbUrl": {
+                                    "title": "InfluxDB的地址",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
