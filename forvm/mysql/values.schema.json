@@ -1,0 +1,179 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "project",
+        "hypervisor",
+        "preferRegion",
+        "preferZone",
+        "network",
+        "virtualMachine"
+    ],
+    "properties": {
+        "project": {
+            "title": "项目",
+            "description": "请输入项目的ID或者Name",
+            "type": "string"
+        },
+        "hypervisor": {
+            "title": "平台",
+            "description": "平台",
+            "type": "string"
+        },
+        "preferRegion": {
+            "title": "区域",
+            "description": "请输入区域的ID或者Name",
+            "componentType": "CloudregionList",
+            "type": "string"
+        },
+        "preferZone": {
+            "title": "可用区",
+            "description": "请输入可用区的ID或者Name",
+            "componentType": "ZoneList",
+            "type": "string"
+        },
+        "network": {
+            "title": "网络",
+            "description": "请输入网络的ID或者Name",
+            "componentType": "NetworkList",
+            "type": "string"
+        },
+        "virtualMachine": {
+            "type": "object",
+            "title": "虚拟机配置",
+            "required": [
+                "instanceType",
+                "image",
+                "diskSizeGB",
+                "storageBackend",
+                "ansiblePlaybook"
+            ],
+            "properties": {
+                "instanceType": {
+                    "title": "套餐",
+                    "description": "请输入创建主机套餐的名字",
+                    "componentType": "SKUList",
+                    "type": "string"
+                },
+                "diskSizeGB": {
+                    "title": "磁盘大小",
+                    "description": "请输入磁盘的大小，单位GB",
+                    "default": 30,
+                    "type": "integer"
+                },
+                "storageBackend": {
+                    "title": "存储类型",
+                    "description": "磁盘的后端存储类型",
+                    "componentType": "StorageBackendList",
+                    "type": "string"
+                },
+                "ansiblePlaybook": {
+                    "type": "object",
+                    "title": "应用配置",
+                    "properties": {
+                        "mysql": {
+                            "type": "object",
+                            "title": "MySQL配置",
+                            "required": [
+                                "port",
+                                "root_password"
+                            ],
+                            "properties": {
+                                "port": {
+                                    "title": "端口",
+                                    "default": 3306,
+                                    "type": "integer"
+                                },
+                                "root_password": {
+                                    "title": "Root密码",
+                                    "default": "admin",
+                                    "type": "string"
+                                },
+                                "databases": {
+                                    "title": "新建数据库",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "required": [
+                                            "name",
+                                            "encoding",
+                                            "collation"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "title": "名称",
+                                                "description": "数据库的名称",
+                                                "type": "string"
+                                            },
+                                            "encoding": {
+                                                "title": "编码",
+                                                "default": "utf8",
+                                                "type": "string"
+                                            },
+                                            "collation": {
+                                                "title": "比较方法",
+                                                "default": "utf8_general_ci",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "users": {
+                                    "title": "新建用户",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "required": [
+                                            "name",
+                                            "host",
+                                            "password",
+                                            "priv"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "title": "用户名",
+                                                "type": "string"
+                                            },
+                                            "host": {
+                                                "title": "主机名",
+                                                "default": "localhost",
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "title": "用户密码",
+                                                "type": "string"
+                                            },
+                                            "priv": {
+                                                "title": "权限",
+                                                "default": "*.*:USAGE",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "telegraf": {
+                            "type": "object",
+                            "title": "监控配置",
+                            "required": [
+                                "influxdbName",
+                                "influxdbUrl"
+                            ],
+                            "properties": {
+                                "influxdbName": {
+                                    "title": "InfluxDB数据库名字",
+                                    "type": "string"
+                                },
+                                "influxdbUrl": {
+                                    "title": "InfluxDB的地址",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,10 +1,10 @@
 {{- $name := .Release.Name -}}
 {{- $node := .Values.virtualMachine -}}
-{{- $desc := "Tomcat" }}
+{{- $desc := "InfluxDB" }}
 apiVersion: onecloud.yunion.io/v1
 kind: VirtualMachine
 metadata:
-  name: tm-{{ $name }}
+  name: ix-{{ $name }}
 spec:
   description: {{ $desc }}
   projectConfig:

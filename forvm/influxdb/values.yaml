@@ -32,18 +32,20 @@ virtualMachine:
   # secgroups:
   
   ansiblePlaybook:
-    mysql: 
-      root_password: Super_P@s$0rd
-      port: 3306
+
+    influxdb:    
+      adminUsername: admin
+      adminPassword: admin
+      http_port: 8086
       databases: []
-        # - name: example_db
-        #   encoding: latin1
-        #   collation: latin1_general_ci
-      users: []
-        # - name: example2_user
-        #   host: "%"
-        #   password: Sime32_U$er_p@ssw0rd
-        #   priv: "example2_db.*:ALL"
+        # - host: localhost
+        #   name: my_db
+        #   state: present
+      users:
+        # - database: my_db
+        #   name: rain
+        #   password: rainzm
+        #   grant: ALL
     telegraf:
       # required
       influxdbUrl: ""
