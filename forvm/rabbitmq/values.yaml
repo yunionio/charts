@@ -11,13 +11,13 @@ virtualMachines:
     # 主机的套餐，不能和 vcpuCount或者vmemSize 同时指定
     instanceType: ""
     # 不能和instanceType同时指定，否则instanceType优先生效
-    # vcpuCount: 1
-    # vmemSizeGB: 1
+    vcpuCount: 1
+    vmemSizeGB: 1
     
     # 系统盘镜像大小
     diskSizeGB: 30 
     # 系统镜像
-    # image: CentOS-7.6.1810-20190430.qcow2
+    image: ""
     # 存储后端类型
     storageBackend: "local"
     
@@ -63,13 +63,13 @@ virtualMachines:
     # 系统盘镜像大小
     diskSizeGB: 30
     # 系统镜像
-    # image: CentOS-7.6.1810-20190430.qcow2
+    image: ""
 
     # 主机的套餐，不能和 vcpuCount或者vmemSize 同时指定
     instanceType: ""
     # 不能和instanceType同时指定，否则instanceType优先生效
-    #vcpuCount: 1
-    # vmemSizeGB: 1
+    vcpuCount: 1
+    vmemSizeGB: 1
 
     
     # 存储后端类型
