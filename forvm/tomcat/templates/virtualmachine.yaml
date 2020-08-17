@@ -42,9 +42,9 @@ spec:
       storageConfig:
         backend: {{ $node.storageBackend }}
       {{- end }}
-    {{- if $node.network }}
+    {{- if .Values.network }}
     networks:
-      - network: {{ $node.network }}
+      - network: {{ .Values.network }}
     {{- end }}
 
   {{- if or $node.newEipBw $node.newEipChargeType }}
