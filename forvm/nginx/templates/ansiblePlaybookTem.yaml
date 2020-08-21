@@ -9,6 +9,18 @@ spec:
       become: true
 
       vars:
+        nginx_vhosts:
+          - listen: "18081"
+            filename: "telegraf.conf"
+            server_name: N/A
+            extra_parameters: |
+              location /server_status {
+                stub_status on;
+                access_log   off;
+                allow 127.0.0.1;
+                deny all;
+              }
+
         telegraf_agent_hostname: ng-{{ .Release.Name }}
         telegraf_global_tags:
           - tag_name: release_name
@@ -22,7 +34,7 @@ spec:
         telegraf_plugins_default:
           - plugin: nginx
             config:
-              - urls = ["http://localhost/server_status"]
+              - urls = ["http://localhost:18081/server_status"]
 
       roles:
         - role: geerlingguy.nginx
