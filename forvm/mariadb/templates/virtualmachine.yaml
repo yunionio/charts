@@ -1,6 +1,6 @@
 {{- $name := .Release.Name -}}
 {{- $node := .Values.virtualMachine -}}
-{{- $desc := "Mysql" }}
+{{- $desc := "MariaDB" }}
 apiVersion: onecloud.yunion.io/v1
 kind: VirtualMachine
 metadata:
