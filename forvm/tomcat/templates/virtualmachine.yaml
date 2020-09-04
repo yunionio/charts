@@ -1,6 +1,7 @@
 {{- $name := .Release.Name -}}
 {{- $node := .Values.virtualMachine -}}
 {{- $desc := "Tomcat" }}
+{{- $needEipHypers := list "aliyun" "qcloud" "azure" "aws" "huawei" "ucloud" "google" "openstack" "zstack"}}
 apiVersion: onecloud.yunion.io/v1
 kind: VirtualMachine
 metadata:

@@ -4,6 +4,7 @@ preferManager: ""
 preferRegion: ""
 preferZone: ""
 hypervisor: "kvm"
+vpc: ""
 network: ""
 virtualMachine:
   preferHost: ""

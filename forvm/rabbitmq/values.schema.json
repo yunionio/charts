@@ -32,6 +32,12 @@
             "componentType": "ZoneList",
             "type": "string"
         },
+        "vpc": {
+            "title": "VPC",
+            "description": "请输入VPC",
+            "componentType": "VPCList",
+            "type": "string"
+        },
         "network": {
             "title": "网络",
             "description": "请输入网络的ID或者Name",

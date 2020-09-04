@@ -2,6 +2,7 @@
 {{- $node := .Values.virtualMachines.masterNode -}}
 {{- $suffix := "master" }}
 {{- $desc := "Rabbitmq master node" }}
+{{- $needEipHypers := list "aliyun" "qcloud" "azure" "aws" "huawei" "ucloud" "google" "openstack" "zstack"}}
 apiVersion: onecloud.yunion.io/v1
 kind: VirtualMachine
 metadata:
@@ -58,31 +59,12 @@ spec:
     {{- end }}
   {{- else if $node.eip }}
   eip: $node.eip
-  {{- else if eq .Values.hypervisor "aliyun" }}
+  {{- else if eq .Values.vpc "default" }}
+  {{- else if not (empty .Values.vpc) }}
   newEip:
     bw: 100
     chargeType: traffic
-  {{- else if eq .Values.hypervisor "qcloud" }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq .Values.hypervisor "azure" }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq .Values.hypervisor "aws" }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq .Values.hypervisor "huawei"}}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq .Values.hypervisor "ucloud"}}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq .Values.hypervisor "google"}}
+  {{- else if has .Values.hypervisor $needEipHypers }}
   newEip:
     bw: 100
     chargeType: traffic

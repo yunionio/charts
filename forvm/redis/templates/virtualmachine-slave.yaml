@@ -2,6 +2,7 @@
 {{- $values := .Values }}
 {{- $node := .Values.virtualMachines.slaveNode -}}
 {{- $count := $node.count }}
+{{- $needEipHypers := list "aliyun" "qcloud" "azure" "aws" "huawei" "ucloud" "google" "openstack" "zstack"}}
 {{- range $i, $e := until ($count | int) }}
 {{- $suffix := printf "%s%d" "slave" (add $e 1) }}
 {{- $desc := printf "%s%d" "Redis slave node No." (add $e 1) }}
@@ -60,39 +61,12 @@ spec:
     {{- end }}
   {{- else if $node.eip }}
   eip: $node.eip
-  {{- else if eq $values.hypervisor "aliyun" }}
+  {{- else if eq $values.vpc "default" }}
+  {{- else if not (empty $values.vpc) }}
   newEip:
     bw: 100
     chargeType: traffic
-  {{- else if eq $values.hypervisor "qcloud" }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq $values.hypervisor "azure" }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq $values.hypervisor "aws" }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq $values.hypervisor "huawei"}}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq $values.hypervisor "ucloud"}}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq $values.hypervisor "google"}}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq $values.hypervisor "openstack"}}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if eq $values.hypervisor "zstack"}}
+  {{- else if has $values.hypervisor $needEipHypers }}
   newEip:
     bw: 100
     chargeType: traffic
