@@ -12,35 +12,35 @@
     "properties": {
         "project": {
             "title": "项目",
-            "description": "请输入项目的ID或者Name",
+            "description": "请选择项目",
             "type": "string"
         },
         "hypervisor": {
             "title": "平台",
-            "description": "平台",
+            "description": "请选择平台",
             "type": "string"
         },
         "preferRegion": {
             "title": "区域",
-            "description": "请输入区域的ID或者Name",
+            "description": "请选择区域",
             "componentType": "CloudregionList",
             "type": "string"
         },
         "preferZone": {
             "title": "可用区",
-            "description": "请输入可用区的ID或者Name",
+            "description": "请选择可用区",
             "componentType": "ZoneList",
             "type": "string"
         },
         "vpc": {
             "title": "VPC",
-            "description": "请输入VPC",
+            "description": "请选择VPC",
             "componentType": "VPCList",
             "type": "string"
         },
         "network": {
             "title": "网络",
-            "description": "请输入网络的ID或者Name",
+            "description": "请选择网络",
             "componentType": "NetworkList",
             "type": "string"
         },
@@ -57,7 +57,7 @@
             "properties": {
                 "instanceType": {
                     "title": "套餐",
-                    "description": "请输入创建主机套餐的名字",
+                    "description": "请选择主机套餐",
                     "componentType": "SKUList",
                     "type": "string"
                 },
@@ -69,7 +69,7 @@
                 },
                 "storageBackend": {
                     "title": "存储类型",
-                    "description": "磁盘的后端存储类型",
+                    "description": "请选择存储类型",
                     "componentType": "StorageBackendList",
                     "type": "string"
                 },
