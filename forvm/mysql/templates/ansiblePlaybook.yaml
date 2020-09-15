@@ -1,5 +1,6 @@
 {{- $namespace := .Release.Namespace }}
 {{- $name := .Release.Name }}
+{{- $values := .Values }}
 {{- with .Values.virtualMachine.ansiblePlaybook }}
 apiVersion: onecloud.yunion.io/v1
 kind: AnsiblePlaybook
@@ -18,6 +19,14 @@ spec:
         namespace: {{ $namespace }}
         name: ms-{{ $name }}
         fieldPath: Status.ExternalInfo.Id
-  maxRetryTimes: 5
+    {{- if $values.envs.project_id }}
+    onecloud_tenant_id:
+      value: {{ $values.envs.project_id }}
+    {{- end }}
+    {{- if $values.envs.domain_id }}
+    onecloud_domain_id:
+      values: {{ $values.envs.domain_id }}
+    {{- end }}
+  maxRetryTimes: 2
 {{- end}}
 

@@ -44,6 +44,20 @@
             "componentType": "NetworkList",
             "type": "string"
         },
+        "envs": {
+            "type": "object",
+            "title": "环境信息",
+            "properties": {
+                "project_id": {
+                    "title": "项目ID",
+                    "type": "string"
+                },
+                "domain_id": {
+                    "title": "域ID",
+                    "type": "string"
+                }
+            }
+        },
         "virtualMachines": {
             "type": "object",
             "title": "虚拟机配置",

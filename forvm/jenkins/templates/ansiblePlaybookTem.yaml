@@ -49,6 +49,10 @@ spec:
       default: admin
     - name: onecloud_vm_id  
       required: true
+    - name: onecloud_tenant_id
+      required: true
+    - name: onecloud_domain_id
+      required: true
 
 
 {{- $count := .Values.virtualMachines.slaveNode.count }}

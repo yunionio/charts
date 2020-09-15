@@ -6,6 +6,9 @@ preferZone: ""
 hypervisor: "kvm"
 vpc: ""
 network: ""
+envs:
+  domain_id: ""
+  project_id: ""
 virtualMachines:
   masterNode:
     preferHost: ""

@@ -6,6 +6,9 @@ preferZone: ""
 hypervisor: "kvm"
 network: ""
 vpc: ""
+envs:
+  domain_id: ""
+  project_id: ""
 virtualMachine:
   preferHost: ""
   # 主机的套餐，不能和 vcpuCount或者vmemSize 同时指定

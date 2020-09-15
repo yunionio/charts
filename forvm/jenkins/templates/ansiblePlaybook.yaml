@@ -1,5 +1,6 @@
 {{- $namespace := .Release.Namespace }}
 {{- $name := .Release.Name }}
+{{- $values := .Values }}
 {{- with .Values.virtualMachines.masterNode.ansiblePlaybook }}
 apiVersion: onecloud.yunion.io/v1
 kind: AnsiblePlaybook
@@ -26,7 +27,15 @@ spec:
         namespace: {{ $namespace }}
         name: jk-{{ $name }}-master
         fieldPath: Status.ExternalInfo.Id
-  maxRetryTimes: 5
+    {{- if $values.envs.project_id }}
+    onecloud_tenant_id:
+      value: {{ $values.envs.project_id }}
+    {{- end }}
+    {{- if $values.envs.domain_id }}
+    onecloud_domain_id:
+      values: {{ $values.envs.domain_id }}
+    {{- end }}
+  maxRetryTimes: 2
 {{- end}}
 
 
@@ -63,5 +72,6 @@ spec:
       value: {{ .jenkins.adminUsername }}
     jenkins_master_password:
       value: {{ .jenkins.adminPassword }}
+  maxRetryTimes: 2
 {{- end }}
 {{- end }}
