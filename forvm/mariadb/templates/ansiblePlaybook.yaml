@@ -25,7 +25,7 @@ spec:
     {{- end }}
     {{- if $values.envs.domain_id }}
     onecloud_domain_id:
-      values: {{ $values.envs.domain_id }}
+      value: {{ $values.envs.domain_id }}
     {{- end }}
   maxRetryTimes: 2
 {{- end}}
