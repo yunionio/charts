@@ -34,6 +34,7 @@ spec:
               {{- end }}
               - username = "{{ $playbook.tomcat.adminUsername }}"
               - password = "{{ $playbook.tomcat.adminPassword }}"
+              - insecure_skip_verify = true
 
       roles:
         - role: zaxos.tomcat-ansible-role

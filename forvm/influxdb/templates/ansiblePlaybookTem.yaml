@@ -37,6 +37,7 @@ spec:
               - urls = ["http://localhost:{{ $playbook.influxdb.http_port }}/debug/vars"]
               - username = "{{ $playbook.influxdb.adminUsername }}"
               - password = "{{ $playbook.influxdb.adminPassword }}"
+              - insecure_skip_verify = true
 
       roles:
         - role: mrlesmithjr.ansible_bootstrap_python

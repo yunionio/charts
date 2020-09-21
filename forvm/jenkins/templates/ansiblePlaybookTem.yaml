@@ -28,6 +28,7 @@ spec:
               - url = "http://{{ $playbook.jenkins.hostname }}:{{ $playbook.jenkins.httpPort }}"
               - username = "{{ $playbook.jenkins.adminUsername }}"
               - password = "{{ $playbook.jenkins.adminPassword }}"
+              - insecure_skip_verify = true
               - response_timeout = "5s"
 
       roles:

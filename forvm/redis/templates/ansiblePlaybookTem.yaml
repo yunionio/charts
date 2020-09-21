@@ -32,6 +32,7 @@ spec:
               {{- if $playbook.redis.password }}
               - password = "{{ $playbook.redis.password }}"
               {{- end }}
+              - insecure_skip_verify = true
 
       tasks:
         - include_role:

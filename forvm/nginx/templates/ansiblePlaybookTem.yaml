@@ -35,6 +35,7 @@ spec:
           - plugin: nginx
             config:
               - urls = ["http://localhost:18081/server_status"]
+              - insecure_skip_verify = true
 
       roles:
         - role: geerlingguy.nginx

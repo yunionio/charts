@@ -46,6 +46,7 @@ spec:
             config:
               - username = "{{ $playbook.rabbitmq.adminUsername }}"
               - password = "{{ $playbook.rabbitmq.adminPassword }}"
+              - insecure_skip_verify = true
 
       tasks:
         - include_role:

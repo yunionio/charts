@@ -34,6 +34,7 @@ spec:
           - plugin: mysql
             config:
               - servers = ["root:{{ $playbook.mysql.root_password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
+              - insecure_skip_verify = true
 
       roles:
         - role: lean_delivery.mysql
