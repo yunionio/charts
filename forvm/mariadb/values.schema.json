@@ -182,7 +182,7 @@
                             ],
                             "properties": {
                                 "influxdbName": {
-                                    "title": "InfluxDB数据库名字",
+                                    "title": "InfluxDB数据库名称",
                                     "type": "string"
                                 },
                                 "influxdbUrl": {
