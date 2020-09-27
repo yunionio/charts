@@ -3,6 +3,10 @@
 {{- $node := .Values.virtualMachines.slaveNode -}}
 {{- $count := $node.count }}
 {{- $needEipHypers := list "aliyun" "qcloud" "azure" "aws" "huawei" "ucloud" "google" "openstack" "zstack"}}
+{{- $imageDict := dict "aliyun" "CentOS  7.3 64位" "huawei" "CentOS 7.3 64bit" "qcloud" "CentOS 7.3 64位" "aws" "CentOS 7 x86_64 GenericCloud 1808" "azure" "CentOS-CI-7.7.20191211" "google" "centos-7-v20200811" }} {{- $image := get $imageDict .Values.hypervisor }}
+{{- if eq $image ""}}
+{{- $image = "CentOS-7.6.1810-20190430.qcow2" }}
+{{- end }}
 {{- range $i, $e := until ($count | int) }}
 {{- $suffix := printf "%s%d" "slave" (add $e 1) }}
 {{- $desc := printf "%s%d" "Rabbitmq slave node No." (add $e 1) }}
@@ -37,10 +41,8 @@ spec:
     rootDisk:
       {{- if $node.image }}
       image: {{ $node.image }}
-      {{- else if eq $values.hypervisor "azure" }}
-      image: CentOS-CI-7.7.20191211
       {{- else }}
-      image: CentOS-7.6.1810-20190430.qcow2
+      image: {{ $image }}
       {{- end }}
       sizeGB: {{ $node.diskSizeGB }}
       {{- if $node.storageBackend }} 
