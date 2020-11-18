@@ -8,7 +8,7 @@ spec:
     - hosts: all
       become: true
       roles:
-        - role: cboard
+        - role: ansible-cboard
   requirements: |
     - src: https://github.com/yunionio/ansible-cboard
   vars:
