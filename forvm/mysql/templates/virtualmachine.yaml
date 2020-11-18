@@ -2,7 +2,7 @@
 {{- $node := .Values.virtualMachine -}}
 {{- $desc := "Mysql" }}
 {{- $needEipHypers := list "aliyun" "qcloud" "azure" "aws" "huawei" "ucloud" "google" "openstack" "zstack"}}
-{{- $imageDict := dict "aliyun" "CentOS  7.3 64位" "huawei" "CentOS 7.3 64bit" "qcloud" "CentOS 7.3 64位" "aws" "CentOS 7 x86_64 GenericCloud 1808" "azure" "CentOS-CI-7.7.20191211" "google" "centos-7-v20200811" }} {{- $image := get $imageDict .Values.hypervisor }}
+{{- $imageDict := dict "aliyun" "CentOS  7.3 64位" "huawei" "CentOS 7.3 64bit" "qcloud" "CentOS 7.3 64位" "aws" "CentOS 7 x86_64 GenericCloud 1808" "azure" "CentOS-7.7-7.7.2020100800" "google" "centos-7-v20200811" }} {{- $image := get $imageDict .Values.hypervisor }}
 {{- if eq $image ""}}
 {{- $image = "CentOS-7.6.1810-20190430.qcow2" }}
 {{- end }}
