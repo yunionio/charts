@@ -20,7 +20,7 @@ virtualMachine:
   # 系统盘镜像大小
   diskSizeGB: 30 
   # 系统镜像
-  image: CentOS-7.6.1810-20190430.qcow2
+  image: ""
   # 存储后端类型
   storageBackend: "local"
   
