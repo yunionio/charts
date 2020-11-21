@@ -12,6 +12,7 @@ spec:
         jenkins_plugins:
           - swarm
         jenkins_version: "2.204"
+        {{- if $playbook.telegraf }}
         telegraf_agent_hostname: jk-{{ .Release.Name }}-master
         telegraf_global_tags:
           - tag_name: release_name
@@ -30,15 +31,20 @@ spec:
               - password = "{{ $playbook.jenkins.adminPassword }}"
               - insecure_skip_verify = true
               - response_timeout = "5s"
+        {{- end }}
 
       roles:
         - role: geerlingguy.java
         - role: ansible-role-jenkins
+        {{- if $playbook.telegraf }}
         - role: ansible-telegraf
+        {{- end }}
   requirements: |
     - src: geerlingguy.java
     - src: https://github.com/yunionio/ansible-role-jenkins
+    {{- if $playbook.telegraf }}
     - src: https://github.com/yunionio/ansible-telegraf
+    {{- end }}
   vars:
     - name: jenkins_hostname
       default: localhost
@@ -48,12 +54,14 @@ spec:
       default: admin
     - name: jenkins_admin_password
       default: admin
+    {{- if $playbook.telegraf }}
     - name: onecloud_vm_id  
       required: true
     - name: onecloud_tenant_id
       required: true
     - name: onecloud_domain_id
       required: true
+    {{- end }}
 
 
 {{- $count := .Values.virtualMachines.slaveNode.count }}

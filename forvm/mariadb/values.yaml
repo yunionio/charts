@@ -48,7 +48,7 @@ virtualMachine:
         #   host: "%"
         #   password: Sime32_U$er_p@ssw0rd
         #   priv: "example2_db.*:ALL"
-    telegraf:
-      # required
-      influxdbUrl: ""
-      influxdbName: telegraf
+    # telegraf:
+    #   # required
+    #   influxdbUrl: ""
+    #   influxdbName: telegraf

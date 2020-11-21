@@ -41,10 +41,10 @@ virtualMachines:
         version: 2.8.24
         port: 6379
         password: redisadmin 
-      telegraf:
-        # required
-        influxdbUrl: ""
-        influxdbName: telegraf
+      # telegraf:
+      #   # required
+      #   influxdbUrl: ""
+      #   influxdbName: telegraf
   slaveNode:
     # slave节点的数量，可以指定为0
     count: 1

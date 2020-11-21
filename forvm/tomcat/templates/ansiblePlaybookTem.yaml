@@ -16,6 +16,7 @@ spec:
           - username: {{ $playbook.tomcat.adminUsername }}
             password: {{ $playbook.tomcat.adminPassword }}
             roles: "tomcat,admin,manager,manager-gui"
+        {{- if $playbook.telegraf }}
         telegraf_agent_hostname: tm-{{ .Release.Name }}
         telegraf_global_tags:
           - tag_name: release_name
@@ -35,12 +36,16 @@ spec:
               - username = "{{ $playbook.tomcat.adminUsername }}"
               - password = "{{ $playbook.tomcat.adminPassword }}"
               - insecure_skip_verify = true
+        {{- end }}
 
       roles:
         - role: zaxos.tomcat-ansible-role
+        {{- if $playbook.telegraf }}
         - role: ansible-telegraf
+        {{- end }}
   requirements: |
     - src: zaxos.tomcat-ansible-role
+    {{- if $playbook.telegraf }}
     - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: onecloud_vm_id  
@@ -49,4 +54,5 @@ spec:
       required: true
     - name: onecloud_domain_id
       required: true
+    {{- end }}
 

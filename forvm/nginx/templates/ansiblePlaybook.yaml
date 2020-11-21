@@ -12,6 +12,7 @@ spec:
   inventory:
     - virtualMachine:
         name: ng-{{ $name }}
+  {{- if .telegraf }}
   vars:
     {{- if .nginx.vhosts }}
     nginx_vhosts: 
@@ -33,6 +34,7 @@ spec:
     onecloud_domain_id:
       value: {{ $values.envs.domain_id }}
     {{- end }}
+  {{- end }}
   maxRetryTimes: 2
 {{- end}}
 

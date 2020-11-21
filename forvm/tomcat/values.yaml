@@ -42,7 +42,7 @@ virtualMachine:
       adminUsername: tomcatadmin
       adminPassword: tomcatadmin
       port_connector: 8080
-    telegraf:
-      # required
-      influxdbUrl: ""
-      influxdbName: telegraf
+    # telegraf:
+    #   # required
+    #   influxdbUrl: ""
+    #   influxdbName: telegraf

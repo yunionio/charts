@@ -62,7 +62,7 @@ virtualMachine:
       #      ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
       #      ssl_protocols       TLSv1.1 TLSv1.2;
       #      ssl_ciphers         HIGH:!aNULL:!MD5;
-    telegraf:
-      # required
-      influxdbUrl: ""
-      influxdbName: telegraf
+    # telegraf:
+    #    # required
+    #    influxdbUrl: ""
+    #    influxdbName: ""

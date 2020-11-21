@@ -50,7 +50,8 @@ virtualMachine:
         #   name: rain
         #   password: rainzm
         #   grant: ALL
-    telegraf:
-      # required
-      influxdbUrl: ""
-      influxdbName: telegraf
+    # 
+    # telegraf:
+      # optional
+      # influxdbUrl: ""
+      # influxdbName: 

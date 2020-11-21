@@ -8,6 +8,7 @@ spec:
     - hosts: all
       become: true
 
+      {{- if $playbook.telegraf }}
       vars:
         nginx_vhosts:
           - listen: "18081"
@@ -36,12 +37,16 @@ spec:
             config:
               - urls = ["http://localhost:18081/server_status"]
               - insecure_skip_verify = true
+        {{- end }}
 
       roles:
         - role: geerlingguy.nginx
+        {{- if $playbook.telegraf }}
         - role: ansible-telegraf
+        {{- end }}
   requirements: |
     - src: geerlingguy.nginx
+    {{- if $playbook.telegraf }}
     - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: nginx_vhosts
@@ -52,4 +57,4 @@ spec:
       required: true
     - name: onecloud_domain_id
       required: true
-
+    {{- end }}

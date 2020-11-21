@@ -15,6 +15,7 @@ spec:
         {{- if $playbook.redis.password }}
         redis_password: {{ $playbook.redis.password }}
         {{- end}}
+        {{- if $playbook.telegraf }}
         telegraf_agent_hostname: rd-{{ .Release.Name }}-master
         telegraf_global_tags:
           - tag_name: release_name
@@ -33,26 +34,33 @@ spec:
               - password = "{{ $playbook.redis.password }}"
               {{- end }}
               - insecure_skip_verify = true
+        {{- end }}
 
       tasks:
         - include_role:
             name: ansible-role-redis
+        {{- if $playbook.telegraf }}
         - include_role:
             name: ansible-telegraf
           when: not redis_slave == "true"
+        {{- end }}
   requirements: |
     - src: davidwittman.redis
     - src: https://github.com/yunionio/ansible-role-redis
+    {{- if $playbook.telegraf }}
     - src: https://github.com/yunionio/ansible-telegraf
+    {{- end }}
   vars:
     - name: redis_slave
       required: false
     - name: redis_master_hostname
       required: false
+    {{- if $playbook.telegraf }}
     - name: onecloud_vm_id  
       required: true
     - name: onecloud_tenant_id
       required: true
     - name: onecloud_domain_id
       required: true
+    {{- end }}
 

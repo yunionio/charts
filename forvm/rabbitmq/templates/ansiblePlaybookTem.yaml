@@ -31,6 +31,7 @@ spec:
             read_priv: ".*"
             write_priv: ".*"
             tags: administrator
+        {{- if $playbook.telegraf }}
         tenegraf_agent_hostname: rm-{{ .Release.Name }}-master
         telegraf_global_tags:
           - tag_name: release_name
@@ -47,15 +48,19 @@ spec:
               - username = "{{ $playbook.rabbitmq.adminUsername }}"
               - password = "{{ $playbook.rabbitmq.adminPassword }}"
               - insecure_skip_verify = true
+        {{- end }}
 
       tasks:
         - include_role:
             name: mrlesmithjr.rabbitmq 
+        {{- if $playbook.telegraf }}
         - include_role:
             name: ansible-telegraf
           when: inventory_hostname == rabbitmq_master
+        {{- end }}
   requirements: |
     - src: mrlesmithjr.rabbitmq
+    {{- if $playbook.telegraf }}
     - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: onecloud_vm_id  
@@ -64,4 +69,5 @@ spec:
       required: true
     - name: onecloud_domain_id
       required: true
+    {{- end }}
 

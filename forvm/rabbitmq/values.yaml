@@ -56,10 +56,10 @@ virtualMachines:
         adminUsername: rabbitmqadmin
         adminPassword: rabbitmqadmin
         listen_port: 5672
-      telegraf:
-        # required
-        influxdbUrl: ""
-        influxdbName: telegraf
+      # telegraf:
+      #   # required
+      #   influxdbUrl: ""
+      #   influxdbName: telegraf
   slaveNode:
     # slave节点的数量，可以指定为0
     count: 1

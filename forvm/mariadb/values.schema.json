@@ -176,10 +176,7 @@
                         "telegraf": {
                             "type": "object",
                             "title": "监控配置",
-                            "required": [
-                                "influxdbName",
-                                "influxdbUrl"
-                            ],
+                            "description": "应用的监控数据会被采集到填写的InfluxDB数据库中，如果未填写，不会采集监控数据",
                             "properties": {
                                 "influxdbName": {
                                     "title": "InfluxDB数据库名称",

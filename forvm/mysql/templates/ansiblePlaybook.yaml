@@ -12,6 +12,7 @@ spec:
   inventory:
     - virtualMachine:
         name: ms-{{ $name }}
+  {{- if .telegraf }}
   vars:
     onecloud_vm_id:
       reference:
@@ -27,6 +28,7 @@ spec:
     onecloud_domain_id:
       value: {{ $values.envs.domain_id }}
     {{- end }}
+  {{- end }}
   maxRetryTimes: 2
 {{- end}}
 

@@ -21,6 +21,7 @@ spec:
       value: {{ .jenkins.adminUsername }}
     jenkins_admin_password: 
       value: {{ .jenkins.adminPassword }}
+    {{if .telegraf }}
     onecloud_vm_id:
       reference:
         kind: VirtualMachine
@@ -34,6 +35,7 @@ spec:
     {{- if $values.envs.domain_id }}
     onecloud_domain_id:
       value: {{ $values.envs.domain_id }}
+    {{- end }}
     {{- end }}
   maxRetryTimes: 2
 {{- end}}
