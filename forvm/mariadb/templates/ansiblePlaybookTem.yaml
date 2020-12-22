@@ -39,12 +39,14 @@ spec:
         {{- end }}
 
       roles:
-        - role: lean_delivery.mysql
+        - role: onecloud-mysql
         {{- if $playbook.telegraf }}
         - role: ansible-telegraf
         {{- end }}
   requirements: |
-    - src: lean_delivery.mysql
+    - name: onecloud-mysql
+      src: https://github.com/yunionio/ansible-role-mysql
+      version: v0.2.0
     {{- if $playbook.telegraf }}
     - src: https://github.com/yunionio/ansible-telegraf
   vars:
