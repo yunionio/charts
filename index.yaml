@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  CBoard:
+  - apiVersion: v2
+    appVersion: 0.4.1
+    created: "2021-02-24T18:38:53.429978237+08:00"
+    description: 'A Helm chart for CBoard: https://github.com/TuiQiao/CBoard'
+    digest: 9a755eda90a0528be791799b550c4b2fcd96091f000713f7a84a2943a7ddf7b3
+    name: CBoard
+    type: application
+    urls:
+    - CBoard-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-02-24T18:38:53.429549941+08:00"
