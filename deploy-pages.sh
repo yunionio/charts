@@ -5,6 +5,11 @@ echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 # copy all generated helm packages to current
 cp -a ./_output/* .
 
+# regenerate with old versions packages
+cp -a *.tgz ./_output
+(cd ./_output && helm repo index .)
+cp -a ./_output/* .
+
 # add changes to git
 git add .
 
