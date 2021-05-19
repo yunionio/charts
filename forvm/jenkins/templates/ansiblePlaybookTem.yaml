@@ -11,6 +11,7 @@ spec:
       vars:
         jenkins_plugins:
           - swarm
+        jenkins_plugin_timeout: 200
         jenkins_version: "2.204"
         {{- if $playbook.telegraf }}
         telegraf_agent_hostname: jk-{{ .Release.Name }}-master
