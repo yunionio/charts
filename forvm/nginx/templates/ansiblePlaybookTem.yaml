@@ -8,6 +8,15 @@ spec:
     - hosts: all
       become: true
 
+      tasks:
+      - name: Disable SELinux
+        ansible.posix.selinux:
+          state: disabled
+
+
+    - hosts: all
+      become: true
+
       {{- if $playbook.telegraf }}
       vars:
         nginx_vhosts:
