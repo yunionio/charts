@@ -1,0 +1,26 @@
+name: Sync github pages to OSS
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+    - run: git checkout HEAD^
+
+    - name: Publish site to aliyun OSS
+      uses: fangbinwei/aliyun-oss-website-action@v1.2.2
+      with:
+        # aliyun config
+        accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
+        accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
+        bucket: ${{ secrets.BUCKET }}
+        # deploy config
+        endpoint: https://oss-cn-hongkong.aliyuncs.com
+        folder: .
