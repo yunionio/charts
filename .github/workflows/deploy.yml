@@ -1,0 +1,27 @@
+name: Sync github pages
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        submodules: recursive  # Fetch the Docsy theme
+        fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
+
+    - name: Publish site to aliyun OSS
+      uses: fangbinwei/aliyun-oss-website-action@v1.2.2
+      with:
+        # aliyun config
+        accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
+        accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
+        bucket: ${{ secrets.BUCKET }}
+        # deploy config
+        endpoint: https://oss-cn-hongkong.aliyuncs.com
+        folder: .
