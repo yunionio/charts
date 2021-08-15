@@ -16,8 +16,6 @@ spec:
         {{- end }}
         rabbitmq_enable_clustering: true
         rabbitmq_master: rm-{{ .Release.Name }}-master
-        rabbitmq_debian_version: {{ $playbook.rabbitmq.debian_version }}
-        rabbitmq_redhat_version: {{ $playbook.rabbitmq.redhat_version }}
         rabbitmq_listen_port: {{ $playbook.rabbitmq.listen_port }}
         {{- if $playbook.rabbitmq.extra_vhosts }}
         rabbitmq_extra_vhosts: 
