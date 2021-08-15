@@ -149,10 +149,7 @@
                     "title": "子节点",
                     "required": [
                         "count",
-                        "instanceType",
-                        "image",
-                        "diskSizeGB",
-                        "storageBackend"
+                        "diskSizeGB"
                     ],
                     "properties": {
                         "count": {
