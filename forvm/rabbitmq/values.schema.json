@@ -155,7 +155,7 @@
                     "properties": {
                         "count": {
                             "title": "数量",
-                            "default": 2,
+                            "default": 0,
                             "type": "integer"
                         },
                         "instanceType": {
