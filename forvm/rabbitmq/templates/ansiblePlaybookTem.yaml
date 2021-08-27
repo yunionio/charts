@@ -10,6 +10,9 @@ spec:
       become: true
 
       vars:
+        rabbitmq_redhat_version: 3.8.11
+        rabbitmq_redhat_url: https://mirrors.huaweicloud.com/rabbitmq-server/v3.8.11
+        erlang_solutions_redhat_repo_url: https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/centos/$releasever
         {{- if $playbook.rabbitmq.config }}
         rabbitmq_config:
           {{- toYaml .playbook.rabbitmq.config | nindent 8 }}
@@ -50,14 +53,14 @@ spec:
 
       tasks:
         - include_role:
-            name: mrlesmithjr.rabbitmq 
+            name: https://github.com/yunionio/ansible-rabbitmq
         {{- if $playbook.telegraf }}
         - include_role:
             name: ansible-telegraf
           when: inventory_hostname == rabbitmq_master
         {{- end }}
   requirements: |
-    - src: mrlesmithjr.rabbitmq
+    - src: https://github.com/yunionio/ansible-rabbitmq
     {{- if $playbook.telegraf }}
     - src: https://github.com/yunionio/ansible-telegraf
   vars:
