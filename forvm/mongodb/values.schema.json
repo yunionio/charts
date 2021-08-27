@@ -136,10 +136,12 @@
                             "properties": {
                                 "influxdbName": {
                                     "title": "InfluxDB数据库名称",
+                                    "default": "telegraf",
                                     "type": "string"
                                 },
                                 "influxdbUrl": {
                                     "title": "InfluxDB的地址",
+                                    "default": "https://27.159.75.106:30086",
                                     "type": "string"
                                 }
                             }
