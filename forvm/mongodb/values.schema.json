@@ -1,0 +1,152 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "project",
+        "hypervisor",
+        "preferRegion",
+        "preferZone",
+        "network",
+        "virtualMachine"
+    ],
+    "properties": {
+        "project": {
+            "title": "项目",
+            "description": "请选择项目",
+            "type": "string"
+        },
+        "hypervisor": {
+            "title": "平台",
+            "description": "请选择平台",
+            "type": "string"
+        },
+        "preferRegion": {
+            "title": "区域",
+            "description": "请选择区域",
+            "componentType": "CloudregionList",
+            "type": "string"
+        },
+        "preferZone": {
+            "title": "可用区",
+            "description": "请选择可用区",
+            "componentType": "ZoneList",
+            "type": "string"
+        },
+        "vpc": {
+            "title": "VPC",
+            "description": "请选择VPC",
+            "componentType": "VPCList",
+            "type": "string"
+        },
+        "network": {
+            "title": "网络",
+            "description": "请选择网络",
+            "componentType": "NetworkList",
+            "type": "string"
+        },
+        "envs": {
+            "type": "object",
+            "title": "环境信息",
+            "properties": {
+                "project_id": {
+                    "title": "项目ID",
+                    "type": "string"
+                },
+                "domain_id": {
+                    "title": "域ID",
+                    "type": "string"
+                }
+            }
+        },
+        "virtualMachine": {
+            "type": "object",
+            "title": "虚拟机配置",
+            "required": [
+                "instanceType",
+                "image",
+                "diskSizeGB",
+                "storageBackend",
+                "ansiblePlaybook"
+            ],
+            "properties": {
+                "instanceType": {
+                    "title": "套餐",
+                    "description": "请选择主机套餐",
+                    "componentType": "SKUList",
+                    "type": "string"
+                },
+                "diskSizeGB": {
+                    "title": "磁盘大小",
+                    "description": "请输入磁盘的大小，单位GB",
+                    "default": 30,
+                    "type": "integer"
+                },
+                "storageBackend": {
+                    "title": "存储类型",
+                    "description": "请选择存储类型",
+                    "componentType": "StorageBackendList",
+                    "type": "string"
+                },
+                "ansiblePlaybook": {
+                    "type": "object",
+                    "title": "应用配置",
+                    "properties": {
+                        "mongodb": {
+                            "type": "object",
+                            "title": "Mongodb配置",
+                            "required": [
+                                "port",
+                                "user_amdin_name",
+                                "user_admin_password",
+                                "root_admin_name",
+                                "root_admin_password"
+                            ],
+                            "properties": {
+                                "port": {
+                                    "title": "端口",
+                                    "default": 27017,
+                                    "type": "integer"
+                                },
+                                "user_amdin_name": {
+                                    "title": "userAdmin用户的名字",
+                                    "default": "userAdmin",
+                                    "type": "string"
+                                },
+                                "user_admin_password": {
+                                    "title": "userAdmin用户的密码",
+                                    "default": "Super_P@s$0rd",
+                                    "type": "string"
+                                },
+                                "root_admin_name": {
+                                    "title": "root用户的名字",
+                                    "default": "root",
+                                    "type": "string"
+                                },
+                                "root_admin_password": {
+                                    "title": "root用户的密码",
+                                    "default": "Super_P@s$0rd",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "telegraf": {
+                            "type": "object",
+                            "title": "监控配置",
+                            "description": "应用的监控数据会被采集到填写的InfluxDB数据库中，如果未填写，不会采集监控数据",
+                            "properties": {
+                                "influxdbName": {
+                                    "title": "InfluxDB数据库名称",
+                                    "type": "string"
+                                },
+                                "influxdbUrl": {
+                                    "title": "InfluxDB的地址",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
