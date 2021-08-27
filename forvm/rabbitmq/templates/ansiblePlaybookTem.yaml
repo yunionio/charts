@@ -10,8 +10,9 @@ spec:
       become: true
 
       vars:
-        rabbitmq_redhat_version: 3.8.11
-        rabbitmq_redhat_url: https://mirrors.huaweicloud.com/rabbitmq-server/v3.8.11
+        rabbitmq_redhat_version: 3.5.0
+        rabbitmq_redhat_url: https://mirrors.huaweicloud.com/rabbitmq-server/v3.5.0
+        rabbitmq_redhat_package: rabbitmq-server-3.5.0-1.noarch.rpm
         erlang_solutions_redhat_repo_url: https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/centos/$releasever
         {{- if $playbook.rabbitmq.config }}
         rabbitmq_config:
@@ -53,7 +54,7 @@ spec:
 
       tasks:
         - include_role:
-            name: https://github.com/yunionio/ansible-rabbitmq
+            name: ansible-rabbitmq
         {{- if $playbook.telegraf }}
         - include_role:
             name: ansible-telegraf
