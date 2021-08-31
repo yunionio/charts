@@ -6,13 +6,47 @@ metadata:
 spec:
   playbook: |
     - hosts: all
-      become: true
+  become: true
 
+  tasks:
+    - name: Check if backup
+      stat:
+        path: /etc/yum.repos.d/CentOS-Base.repo.bk
+      register: bk_status
+
+    - name: Backup origin repository
+      command: mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bk
+      when: bk_status.stat.exists == False
+      failed_when: False
+
+    - name: Add base repository
+      yum_repository:
+        name: base
+        description: CentOS-$releasever - Base
+        baseurl: \{\{ repo_ull \}\}/centos/$releasever/os/$basearch/
+        gpgcheck: yes
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+        file: CentOS-Base
+
+    - name: Add updates repository
+      yum_repository:
+        name: updates
+        description: CentOS-$releasever - Updates
+        baseurl: \{\{ repo_ull \}\}/centos/$releasever/updates/$basearch/
+        gpgcheck: yes
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+        file: CentOS-Base
+
+    - name: Setup MySQL
+      include_role:
+        name: onecloud-mysql
       vars:
         mysql_version: 5.7
-        mysql_repo: http://mirrors.tuna.tsinghua.edu.cn/mysql/yum/mysql-5.7-community-el7-$basearch/
+        mysql_repo: \{\{ repo_ull \}\}/mysql/yum/mysql-5.7-community-el7-x86_64/
+        mysql_gpgkey: \{\{ repo_ull \}\}/mysql/RPM-GPG-KEY-mysql
         mysql_root_password: {{ $playbook.mysql.root_password }}
         mysql_port: {{ $playbook.mysql.port }}
+        pypi_custom_host: \{\{ repo_ull \}\}
         {{- if $playbook.mysql.databases }}
         mysql_databases:
           {{- toYaml $playbook.mysql.databases | nindent 10 }}
@@ -22,7 +56,12 @@ spec:
           {{- toYaml $playbook.mysql.users | nindent 10 }}
         {{- end }}
         mysql_daemon: mysqld
-        {{- if $playbook.telegraf }}
+    
+
+    - name: Setup Telegraf
+      include_role:
+        name: ansible-telegraf
+      vars:
         telegraf_agent_hostname: ms-{{ .Release.Name }}
         telegraf_global_tags:
           - tag_name: release_name
@@ -30,21 +69,15 @@ spec:
         telegraf_agent_output:
           - type: influxdb
             config:
-              - urls = ["{{ $playbook.telegraf.influxdbUrl }}"]
-              - database = "{{ $playbook.telegraf.influxdbName }}"
+              - urls = ["\{\{ infludb_url \}\}"]
+              - database = "telegraf"
               - insecure_skip_verify = true
         telegraf_plugins_default:
           - plugin: mysql
             config:
               - servers = ["root:{{ $playbook.mysql.root_password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
               - insecure_skip_verify = true
-        {{- end }}
 
-      roles:
-        - role: onecloud-mysql
-        {{- if $playbook.telegraf }}
-        - role: ansible-telegraf
-        {{- end }}
   requirements: |
     - name: onecloud-mysql
       src: https://github.com/yunionio/ansible-role-mysql

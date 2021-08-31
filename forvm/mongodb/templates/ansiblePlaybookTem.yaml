@@ -9,6 +9,7 @@ spec:
       become: true
 
       vars:
+        mongodb_version: 5.0
         mongodb_net_port: {{ $playbook.mongodb.port }}
         mongodb_user_admin_name: {{ $playbook.mongodb.user_admin_name }}
         mongodb_user_admin_password: {{ $playbook.mongodb.user_admin_password }}
