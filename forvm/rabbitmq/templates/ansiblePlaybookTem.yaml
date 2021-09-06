@@ -72,6 +72,7 @@ spec:
             telegraf_agent_version: 1.19.2-yn~fe11a96b
             telegraf_agent_version_patch: 0
             telegraf_agent_package_method: offline
+            telegraf_agent_package_local_dir: /opt/yunion/ansible-install-pkg
             tenegraf_agent_hostname: rm-{{ .Release.Name }}-master
             telegraf_global_tags:
               - tag_name: release_name

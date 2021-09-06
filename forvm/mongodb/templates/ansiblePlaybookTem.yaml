@@ -44,6 +44,7 @@ spec:
             mongodb_version: "5.0"
             mongodb_repo: "{{`{{ repo_url }}`}}/mongodb/yum/el$releasever"
             pypi_custom_host: "{{`{{ repo_url }}`}}"
+            mongodb_pymongo_pip_version: 3.12.0
             mongodb_net_port: {{ $playbook.mongodb.port }}
             mongodb_user_admin_name: {{ $playbook.mongodb.user_admin_name }}
             mongodb_user_admin_password: {{ $playbook.mongodb.user_admin_password }}
@@ -57,6 +58,7 @@ spec:
             telegraf_agent_version: 1.19.2-yn~fe11a96b
             telegraf_agent_version_patch: 0
             telegraf_agent_package_method: offline
+            telegraf_agent_package_local_dir: /opt/yunion/ansible-install-pkg
             telegraf_agent_hostname: mg-{{ .Release.Name }}
             telegraf_global_tags:
               - tag_name: release_name
