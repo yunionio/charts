@@ -7,7 +7,7 @@
 {{- if eq $image ""}}
 {{- $image = "CentOS-7.6.1810-20190430.qcow2" }}
 {{- end }}
-{{- $prefixImage := abbrev 1 $node.instanceType }}
+{{- $prefixImage := substr 0 1 $node.instanceType }}
 {{- range $i, $e := until ($count | int) }}
 {{- $suffix := printf "%s%d" "slave" (add $e 1) }}
 {{- $desc := printf "%s%d" "Redis slave node No." (add $e 1) }}

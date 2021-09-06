@@ -47,7 +47,7 @@ spec:
             {{- if $playbook.redis.password }}
             redis_password: {{ $playbook.redis.password }}
             {{- end}}
-            redis_download_url: "{{`{{ repo_url }}`}}/redis/downloads/redis-2.8.24.tar.gz"
+            redis_download_url: "{{`{{ repo_url }}`}}/redis/downloads/v2.8.24/redis-2.8.24.tar.gz"
 
         - name: Setup Telegraf
           include_role:
