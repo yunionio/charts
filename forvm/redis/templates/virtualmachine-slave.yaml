@@ -7,6 +7,7 @@
 {{- if eq $image ""}}
 {{- $image = "CentOS-7.6.1810-20190430.qcow2" }}
 {{- end }}
+{{- $prefixImage := abbrev 1 $node.instanceType }}
 {{- range $i, $e := until ($count | int) }}
 {{- $suffix := printf "%s%d" "slave" (add $e 1) }}
 {{- $desc := printf "%s%d" "Redis slave node No." (add $e 1) }}
@@ -39,7 +40,9 @@ spec:
     vmemSizeGB: {{ $node.vmemSizeGB }}
     {{- end }}
     rootDisk:
-      {{- if $node.image }}
+      {{- if eq $prefixImage "k" }}
+      image: CentOS-7-aarch64-GenericCloud-2009.qcow2
+      {{- else if $node.image }}
       image: {{ $node.image }}
       {{- else }}
       image: {{ $image }}
