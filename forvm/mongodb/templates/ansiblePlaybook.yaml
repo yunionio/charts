@@ -12,7 +12,6 @@ spec:
   inventory:
     - virtualMachine:
         name: mg-{{ $name }}
-  {{- if .telegraf }}
   vars:
     onecloud_vm_id:
       reference:
@@ -28,7 +27,6 @@ spec:
     onecloud_domain_id:
       value: {{ $values.envs.domain_id }}
     {{- end }}
-  {{- end }}
   proxyVars:
     - name: repo_url
       service: repo
