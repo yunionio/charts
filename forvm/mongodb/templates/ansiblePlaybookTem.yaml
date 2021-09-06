@@ -41,7 +41,9 @@ spec:
           include_role:
             name: undergreen.mongodb
           vars:
-            mongodb_version: 5.0
+            mongodb_version: "5.0"
+            mongodb_repo: "{{`{{ repo_url }}`}}/mongodb/yum/el$releasever"
+            pypi_custom_host: "{{`{{ repo_url }}`}}"
             mongodb_net_port: {{ $playbook.mongodb.port }}
             mongodb_user_admin_name: {{ $playbook.mongodb.user_admin_name }}
             mongodb_user_admin_password: {{ $playbook.mongodb.user_admin_password }}

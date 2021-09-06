@@ -96,7 +96,7 @@
                             "title": "Mongodb配置",
                             "required": [
                                 "port",
-                                "user_amdin_name",
+                                "user_admin_name",
                                 "user_admin_password",
                                 "root_admin_name",
                                 "root_admin_password"
@@ -107,7 +107,7 @@
                                     "default": 27017,
                                     "type": "integer"
                                 },
-                                "user_amdin_name": {
+                                "user_admin_name": {
                                     "title": "userAdmin用户的名字",
                                     "default": "userAdmin",
                                     "type": "string"
