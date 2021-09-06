@@ -49,25 +49,4 @@ spec:
     networks:
       - network: {{ .Values.network }}
     {{- end }}
-
-  {{- if or $node.newEipBw $node.newEipChargeType }}
-  newEip:
-    {{- if $node.newEipBw }}
-    bw: {{ $node.newEipBw }}
-    {{- end }}
-    {{- if $node.newEipChargeType }}
-    chargeType: {{ $node.newEipChargeType }}
-    {{- end }}
-  {{- else if $node.eip }}
-  eip: $node.eip
-  {{- else if eq .Values.vpc "default" }}
-  {{- else if not (empty .Values.vpc) }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if has .Values.hypervisor $needEipHypers }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- end}}
   
