@@ -134,23 +134,6 @@
                                     }
                                 }
                             }
-                        },
-                        "telegraf": {
-                            "type": "object",
-                            "title": "监控配置",
-                            "description": "应用的监控数据会被采集到填写的InfluxDB数据库中，如果未填写，不会采集监控数据",
-                            "properties": {
-                                "influxdbName": {
-                                    "title": "InfluxDB数据库名称",
-                                    "default": "telegraf",
-                                    "type": "string"
-                                },
-                                "influxdbUrl": {
-                                    "title": "InfluxDB的地址",
-                                    "default": "https://27.159.75.106:30086",
-                                    "type": "string"
-                                }
-                            }
                         }
                     }
                 }

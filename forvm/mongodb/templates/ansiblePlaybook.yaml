@@ -29,6 +29,11 @@ spec:
       value: {{ $values.envs.domain_id }}
     {{- end }}
   {{- end }}
+  proxyVars:
+    - name: repo_url
+      service: repo
+    - name: influxdb_url
+      service: influxdb
   maxRetryTimes: 2
 {{- end}}
 

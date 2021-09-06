@@ -62,6 +62,9 @@ spec:
           include_role:
             name: ansible-telegraf
           vars:
+            telegraf_agent_version: 1.19.2-yn~fe11a96b
+            telegraf_agent_version_patch: 0
+            telegraf_agent_package_method: offline
             telegraf_agent_hostname: ms-{{ .Release.Name }}
             telegraf_global_tags:
               - tag_name: release_name
@@ -77,7 +80,6 @@ spec:
                 config:
                   - servers = ["root:{{ $playbook.mysql.root_password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
                   - insecure_skip_verify = true
-
   requirements: |
     - name: onecloud-mysql
       src: https://github.com/yunionio/ansible-role-mysql
