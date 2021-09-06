@@ -23,7 +23,7 @@ spec:
           yum_repository:
             name: base
             description: CentOS-$releasever - Base
-            baseurl: {{`{{ repo_url }}`}}/centos/$releasever/os/$basearch/
+            baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/os/$basearch/"
             gpgcheck: yes
             gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
             file: CentOS-Base
@@ -32,7 +32,7 @@ spec:
           yum_repository:
             name: updates
             description: CentOS-$releasever - Updates
-            baseurl: {{`{{ repo_url }}`}}/centos/$releasever/updates/$basearch/
+            baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/updates/$basearch/"
             gpgcheck: yes
             gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
             file: CentOS-Base
@@ -42,11 +42,11 @@ spec:
             name: onecloud-mysql
           vars:
             mysql_version: 5.7
-            mysql_repo: {{`{{ repo_url }}`}}/mysql/yum/mysql-5.7-community-el7-x86_64/
-            mysql_gpgkey: {{`{{ repo_url }}`}}/mysql/RPM-GPG-KEY-mysql
+            mysql_repo: "{{`{{ repo_url }}`}}/mysql/yum/mysql-5.7-community-el7-x86_64/"
+            mysql_gpgkey: "{{`{{ repo_url }}`}}/mysql/RPM-GPG-KEY-mysql"
             mysql_root_password: {{ $playbook.mysql.root_password }}
             mysql_port: {{ $playbook.mysql.port }}
-            pypi_custom_host: {{`{{ repo_url }}`}}
+            pypi_custom_host: "{{`{{ repo_url }}`}}"
             {{- if $playbook.mysql.databases }}
             mysql_databases:
               {{- toYaml $playbook.mysql.databases | nindent 10 }}
