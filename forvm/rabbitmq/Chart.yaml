@@ -1,6 +1,6 @@
 apiVersion: v2
 name: onecloud-rabbitmq
-description: RabbitMQ 3.8.20
+description: RabbitMQ 3.9
 icon: https://www.rabbitmq.com/img/RabbitMQ-logo.svg
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -19,4 +19,4 @@ version: 0.2.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 3.8.20
+appVersion: 3.9

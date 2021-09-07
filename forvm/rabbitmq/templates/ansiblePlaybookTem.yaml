@@ -42,9 +42,9 @@ spec:
           include_role:
             name: ansible-rabbitmq
           vars:
-            rabbitmq_redhat_version: 3.8.20
-            rabbitmq_redhat_url: "{{`{{ repo_url }}`}}/rabbitmq/downloads/v3.8.20"
-            rabbitmq_redhat_package: rabbitmq-server-3.8.20-1.el7.noarch.rpm
+            rabbitmq_redhat_version: 3.9.5
+            rabbitmq_redhat_url: "{{`{{ repo_url }}`}}/rabbitmq/downloads/v3.9.5"
+            rabbitmq_redhat_package: rabbitmq-server-3.9.5-1.el7.noarch.rpm
             erlang_solutions_redhat_repo_url: "{{`{{ repo_url }}`}}/erlang-solutions/centos/$releasever"
             rabbitmq_redhat_repo_key: "{{`{{ repo_url }}`}}/rabbitmq/downloads/rabbitmq-release-signing-key.asc"
             {{- if $playbook.rabbitmq.config }}
