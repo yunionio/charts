@@ -46,6 +46,7 @@ spec:
             rabbitmq_redhat_url: "{{`{{ repo_url }}`}}/rabbitmq/downloads/v3.8.19"
             rabbitmq_redhat_package: rabbitmq-server-3.8.19-1.el7.noarch.rpm
             erlang_solutions_redhat_repo_url: "{{`{{ repo_url }}`}}/erlang-solutions/centos/$releasever"
+            rabbitmq_redhat_repo_key: "{{`{{ repo_url }}`}}/rabbitmq/downloads/rabbitmq-release-signing-key.asc"
             {{- if $playbook.rabbitmq.config }}
             rabbitmq_config:
               {{- toYaml .playbook.rabbitmq.config | nindent 8 }}
