@@ -3,9 +3,9 @@ entries:
   CBoard:
   - apiVersion: v2
     appVersion: 0.4.1
-    created: "2021-09-07T16:20:14.194987+08:00"
+    created: "2021-09-09T17:51:56.642473+08:00"
     description: 'A Helm chart for CBoard: https://github.com/TuiQiao/CBoard'
-    digest: e611468a3909e3972445580fd6690b4ddc7c23741c968579472bfa9613c448ac
+    digest: 4cb54db8f01fd7f8f9fd1014cd14ec4988a929157bf7ba2926b0e1dc8920abde
     name: CBoard
     type: application
     urls:
@@ -13,7 +13,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 0.4.1
-    created: "2021-09-07T16:20:14.19457+08:00"
+    created: "2021-09-09T17:51:56.642049+08:00"
     description: 'A Helm chart for CBoard: https://github.com/TuiQiao/CBoard'
     digest: 5cd314bb7ed4d86c3c53187d6a194abcec41538a5c33d7a7157f8048df9afd44
     name: CBoard
@@ -23,7 +23,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 0.4.1
-    created: "2021-09-07T16:20:14.194131+08:00"
+    created: "2021-09-09T17:51:56.641639+08:00"
     description: 'A Helm chart for CBoard: https://github.com/TuiQiao/CBoard'
     digest: e0055b368f9e2ed706840ac7bf9ca6b985928beb1e3359c3a12601d232668510
     name: CBoard
@@ -34,9 +34,9 @@ entries:
   onecloud-influxdb:
   - apiVersion: v2
     appVersion: 1.8.0
-    created: "2021-09-07T16:20:14.198035+08:00"
+    created: "2021-09-09T17:51:56.643606+08:00"
     description: A Helm chart for influxdb on Onecloud
-    digest: 8daf4feebd970cf272e1317c7d5cee79ac110f71f924e31dac169174cbfa39ef
+    digest: fb5d88f3edfa30d605f942d36a66764039559554bdb2f088ebd128574ec669d9
     icon: https://influxdata.github.io/branding/img/downloads/influxdb-logo--preview.svg
     name: onecloud-influxdb
     type: application
@@ -45,7 +45,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.8.0
-    created: "2021-09-07T16:20:14.197665+08:00"
+    created: "2021-09-09T17:51:56.643304+08:00"
     description: A Helm chart for influxdb on Onecloud
     digest: f13975159b05541498cb23457ccce84c52a030eb9cf919a35c68e4653f38490f
     icon: https://influxdata.github.io/branding/img/downloads/influxdb-logo--preview.svg
@@ -56,7 +56,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.8.0
-    created: "2021-09-07T16:20:14.195482+08:00"
+    created: "2021-09-09T17:51:56.642919+08:00"
     description: A Helm chart for influxdb on Onecloud
     digest: c81d7385881f16cd9f8141b8ad1ff80b2c19176412c6c91196a5cd5c581299e4
     icon: https://influxdata.github.io/branding/img/downloads/influxdb-logo--preview.svg
@@ -68,9 +68,9 @@ entries:
   onecloud-jenkins:
   - apiVersion: v2
     appVersion: "2.204"
-    created: "2021-09-07T16:20:14.199617+08:00"
+    created: "2021-09-09T17:51:56.645028+08:00"
     description: A Helm chart for Jenkins on Onecloud
-    digest: 7612edf6f3059df038180fb5b5aa843a0c52593d2f8d5aaefdf84c7e0d34e16a
+    digest: e6a2222d8fae19fe3f1d58d68227ed5279fa8ad93e4c887a276f799e529774f9
     icon: https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png
     name: onecloud-jenkins
     type: application
@@ -79,7 +79,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "2.204"
-    created: "2021-09-07T16:20:14.199247+08:00"
+    created: "2021-09-09T17:51:56.644679+08:00"
     description: A Helm chart for Jenkins on Onecloud
     digest: b289406f108a8e380a9e6d335559c56bdebb0e5787df9c53554ebddcc46d47e7
     icon: https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png
@@ -90,7 +90,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: "2.204"
-    created: "2021-09-07T16:20:14.198851+08:00"
+    created: "2021-09-09T17:51:56.644321+08:00"
     description: A Helm chart for Jenkins on Onecloud
     digest: 988d51bdff9f0fda765ac2a1fcc9f98e82863de25835dc5a23549ef6a648dd85
     icon: https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png
@@ -101,7 +101,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: "2.204"
-    created: "2021-09-07T16:20:14.198438+08:00"
+    created: "2021-09-09T17:51:56.643957+08:00"
     description: A Helm chart for Jenkins on Onecloud
     digest: ad6a24a628192ccd60275325e36434439fa86a62fd8acc1f5b5fdec13f6c20ce
     icon: https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png
@@ -112,9 +112,9 @@ entries:
     version: 0.1.0
   onecloud-mariadb:
   - apiVersion: v2
-    created: "2021-09-07T16:20:14.200803+08:00"
+    created: "2021-09-09T17:51:56.646317+08:00"
     description: A Helm chart for Mariadb on Onecloud
-    digest: dabe7f98817e435d52ee31dc118826ffe1a67122e38bfe844102ccbd5b66c0d7
+    digest: 1131c36c3fc1e1c1511b71ffe206b333241ce7643af74565f021f4686b1868d8
     icon: https://mariadb.org/wp-content/themes/twentynineteen-child/icons/mariadb_org_rgb_h.svg
     name: onecloud-mariadb
     type: application
@@ -122,7 +122,7 @@ entries:
     - onecloud-mariadb-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2021-09-07T16:20:14.200508+08:00"
+    created: "2021-09-09T17:51:56.645988+08:00"
     description: A Helm chart for Mariadb on Onecloud
     digest: d6a1a9a27d4049d217b054d6ab9f12ab151f93798e6a8b78a1f1064113629487
     icon: https://mariadb.org/wp-content/themes/twentynineteen-child/icons/mariadb_org_rgb_h.svg
@@ -132,7 +132,7 @@ entries:
     - onecloud-mariadb-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2021-09-07T16:20:14.200211+08:00"
+    created: "2021-09-09T17:51:56.645668+08:00"
     description: A Helm chart for Mariadb on Onecloud
     digest: 3d3ed3ac7e4f70d1d910313d07628250336e462f5546f144c10e5ddbe4113444
     icon: https://mariadb.org/wp-content/themes/twentynineteen-child/icons/mariadb_org_rgb_h.svg
@@ -142,7 +142,7 @@ entries:
     - onecloud-mariadb-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2021-09-07T16:20:14.199912+08:00"
+    created: "2021-09-09T17:51:56.645352+08:00"
     description: A Helm chart for Mariadb on Onecloud
     digest: 8ce58df37ad130d992b48139de97185a04be9cafea067f5804264637d71c2ee4
     icon: https://mariadb.org/wp-content/themes/twentynineteen-child/icons/mariadb_org_rgb_h.svg
@@ -154,9 +154,9 @@ entries:
   onecloud-mongodb:
   - apiVersion: v2
     appVersion: "5"
-    created: "2021-09-07T16:20:14.201095+08:00"
+    created: "2021-09-09T17:51:56.646633+08:00"
     description: MongoDB 5.0
-    digest: 522cf699549812a2adca43bf433be3470d202894404e1472fc1bb1173b87f9d8
+    digest: f605e5ae91619fc5608d34786625ea7c5fc8d9f61615f3ca2e0b821a7e3749de
     icon: https://webimages.mongodb.com/_com_assets/cms/kpo5kblefbjq79065-Horizontal_Default.svg?auto=format%252Ccompress
     name: onecloud-mongodb
     type: application
@@ -166,9 +166,9 @@ entries:
   onecloud-mysql:
   - apiVersion: v2
     appVersion: "5.7"
-    created: "2021-09-07T16:20:14.202356+08:00"
+    created: "2021-09-09T17:51:56.6487+08:00"
     description: MySQL 5.7
-    digest: 6c8e984431e2cb1c18e8f093c1e052f8985053cbbb2cd1a0d040a5b2860b273c
+    digest: 0b6cacfabd480971b566230deadff67476bd821e36cbcc058a37796e53d081e5
     icon: https://labs.mysql.com/common/logos/mysql-logo.svg
     name: onecloud-mysql
     type: application
@@ -177,7 +177,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "5.7"
-    created: "2021-09-07T16:20:14.202029+08:00"
+    created: "2021-09-09T17:51:56.648333+08:00"
     description: A Helm chart for Mysql on Onecloud
     digest: 81bc345daf487e99960ce8fc6b80753542db11379af651f5227a1e1a8d3435c4
     icon: https://labs.mysql.com/common/logos/mysql-logo.svg
@@ -188,7 +188,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: "5.7"
-    created: "2021-09-07T16:20:14.201723+08:00"
+    created: "2021-09-09T17:51:56.64731+08:00"
     description: A Helm chart for Mysql on Onecloud
     digest: 75c8ca9598b9fc2c3e2fbc99d6fd8a8a1264dfa59f9ce06768b5fd68921c685f
     icon: https://labs.mysql.com/common/logos/mysql-logo.svg
@@ -199,7 +199,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: "5.7"
-    created: "2021-09-07T16:20:14.201409+08:00"
+    created: "2021-09-09T17:51:56.64698+08:00"
     description: A Helm chart for Mysql on Onecloud
     digest: 1a326c9997e79b1b95b39366b0930a694c937c545ca3b4e3154b145f400f0053
     icon: https://labs.mysql.com/common/logos/mysql-logo.svg
@@ -211,9 +211,9 @@ entries:
   onecloud-nginx:
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.204173+08:00"
+    created: "2021-09-09T17:51:56.649968+08:00"
     description: A Helm chart for Nginx on Onecloud
-    digest: 367b6f661f1f7f4a7f7c3a3f80ec90645fe7f350ede8974eb8acf2515c2bbe82
+    digest: 004ba7398f265134ed60407234a98665d4fce4f6bfc5ff7c4fd34004329de1fb
     icon: https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg
     name: onecloud-nginx
     type: application
@@ -222,7 +222,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.203588+08:00"
+    created: "2021-09-09T17:51:56.649664+08:00"
     description: A Helm chart for Nginx on Onecloud
     digest: 76477be11308d99bccd939d64786745ed6bd9bfba558fd938d845cee71b7ba1b
     icon: https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg
@@ -233,7 +233,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.203007+08:00"
+    created: "2021-09-09T17:51:56.649355+08:00"
     description: A Helm chart for Nginx on Onecloud
     digest: 4b3122b3a78c7b47cdaa15944e765aae37f156d150a4458002b0daa5b018a4ab
     icon: https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg
@@ -244,7 +244,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.202685+08:00"
+    created: "2021-09-09T17:51:56.649031+08:00"
     description: A Helm chart for Nginx on Onecloud
     digest: 891aca5689e03b776d8af8a7ae49e54143b8afb2bcd257c792f3195429aa5691
     icon: https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg
@@ -256,9 +256,9 @@ entries:
   onecloud-postgresql:
   - apiVersion: v2
     appVersion: "9.2"
-    created: "2021-09-07T16:20:14.20447+08:00"
+    created: "2021-09-09T17:51:56.650244+08:00"
     description: PostgreSQL 9.2
-    digest: bdc87d0f961031000ea76f13259320e18fcda345d5aa09185742b64cad444f9a
+    digest: f0221aca20c367ffccf2cf8f4877fd88899dba00845f89f4d28b4e7e77cb8881
     icon: https://www.postgresql.org/media/img/about/press/elephant.png
     name: onecloud-postgresql
     type: application
@@ -268,9 +268,9 @@ entries:
   onecloud-rabbitmq:
   - apiVersion: v2
     appVersion: "3.9"
-    created: "2021-09-07T16:20:14.205936+08:00"
+    created: "2021-09-09T17:51:56.651667+08:00"
     description: RabbitMQ 3.9
-    digest: 306a62cd1115a4f70e5a10a4d619b42ebb11d0637899900d8799359c5882ee0a
+    digest: 96be7715a66a877fd657626278ce5c46060c93d831ea32f9c150287565dd4fe5
     icon: https://www.rabbitmq.com/img/RabbitMQ-logo.svg
     name: onecloud-rabbitmq
     type: application
@@ -279,7 +279,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 3.6.1
-    created: "2021-09-07T16:20:14.205584+08:00"
+    created: "2021-09-09T17:51:56.651278+08:00"
     description: A Helm chart for Rabbitmq on Onecloud
     digest: 9aef3fc345999547479e07f8bf74dd964bdcaf389fbe15ce76222f2f3146efb5
     icon: https://www.rabbitmq.com/img/RabbitMQ-logo.svg
@@ -290,7 +290,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 3.6.1
-    created: "2021-09-07T16:20:14.205217+08:00"
+    created: "2021-09-09T17:51:56.650937+08:00"
     description: A Helm chart for Rabbitmq on Onecloud
     digest: d828db97fd0f44f1d8c6ad431e0fce051ca44c5f4d996fd9d209cad8b00cf9ba
     icon: https://www.rabbitmq.com/img/RabbitMQ-logo.svg
@@ -301,7 +301,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 3.6.1
-    created: "2021-09-07T16:20:14.204859+08:00"
+    created: "2021-09-09T17:51:56.650588+08:00"
     description: A Helm chart for Rabbitmq on Onecloud
     digest: a82518ccf52a2a3188a856191ad0446c0348e5da2052a7c12efb4718eac79720
     icon: https://www.rabbitmq.com/img/RabbitMQ-logo.svg
@@ -313,9 +313,9 @@ entries:
   onecloud-redis:
   - apiVersion: v2
     appVersion: 2.8.24
-    created: "2021-09-07T16:20:14.207298+08:00"
+    created: "2021-09-09T17:51:56.653033+08:00"
     description: Redis 2.8
-    digest: 842fdc06d99ae301542d0114fe685ceb38e8763de10b157a0ab57d536ab78462
+    digest: bf268c1bd82314a5b271cb9c0d7a60711f597a0773d2bf08fd1b1032bdabbcad
     icon: https://redis.io/images/redis.png
     name: onecloud-redis
     type: application
@@ -323,7 +323,7 @@ entries:
     - onecloud-redis-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2021-09-07T16:20:14.206904+08:00"
+    created: "2021-09-09T17:51:56.652696+08:00"
     description: A Helm chart for Redis on Onecloud
     digest: 60b1d06f30e909f0aed1a1fa57b77d402c25a90e4e69b533bd2c5d71a625f78d
     icon: https://redis.io/images/redis.png
@@ -333,7 +333,7 @@ entries:
     - onecloud-redis-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2021-09-07T16:20:14.206585+08:00"
+    created: "2021-09-09T17:51:56.652347+08:00"
     description: A Helm chart for Redis on Onecloud
     digest: 2d772aa117f6b209c54a8962b44cd363fe2d224681a694ff62698cf94166fcc1
     icon: https://redis.io/images/redis.png
@@ -343,7 +343,7 @@ entries:
     - onecloud-redis-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2021-09-07T16:20:14.206257+08:00"
+    created: "2021-09-09T17:51:56.652006+08:00"
     description: A Helm chart for Redis on Onecloud
     digest: 18dfd1d9f707eaa1f8b1eff6fe66e420b3253e9d34981be9b13c5f20065f7911
     icon: https://redis.io/images/redis.png
@@ -355,9 +355,9 @@ entries:
   onecloud-tomcat:
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.209234+08:00"
+    created: "2021-09-09T17:51:56.655006+08:00"
     description: A Helm chart for Tomcat on Onecloud
-    digest: 9c26af7e6c51395334d8784a98e31c943e86bf8fff0882bd82245955f7b46900
+    digest: 00427659910594c6caf1cfbfd47c67685bb3312ff0d057478db33b4a928c1518
     icon: http://tomcat.apache.org/res/images/tomcat.png
     name: onecloud-tomcat
     type: application
@@ -366,7 +366,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.208755+08:00"
+    created: "2021-09-09T17:51:56.653954+08:00"
     description: A Helm chart for Tomcat on Onecloud
     digest: 15022f865f40ab971de021d1149d17538126c4ba4f87f104873e325259d44dd9
     icon: http://tomcat.apache.org/res/images/tomcat.png
@@ -377,7 +377,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.208263+08:00"
+    created: "2021-09-09T17:51:56.65364+08:00"
     description: A Helm chart for Tomcat on Onecloud
     digest: c419f25ac3ae9bc9f321c93efc10dfb206ddaaaae14c5d28435de5189fb2bef9
     icon: http://tomcat.apache.org/res/images/tomcat.png
@@ -388,7 +388,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: latest
-    created: "2021-09-07T16:20:14.207794+08:00"
+    created: "2021-09-09T17:51:56.65334+08:00"
     description: A Helm chart for Tomcat on Onecloud
     digest: 5d44d74bc7bf76d0b64794caead162068aa341f4b56ad5b8a65306b339a5fcab
     icon: http://tomcat.apache.org/res/images/tomcat.png
@@ -397,4 +397,4 @@ entries:
     urls:
     - onecloud-tomcat-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-07T16:20:14.192865+08:00"
+generated: "2021-09-09T17:51:56.638777+08:00"
