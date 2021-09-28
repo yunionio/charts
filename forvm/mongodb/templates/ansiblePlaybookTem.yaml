@@ -74,9 +74,6 @@ spec:
                 config:
                   - servers = ["mongodb://{{ $playbook.mongodb.root_admin_name }}:{{ $playbook.mongodb.root_admin_password }}@127.0.0.1:{{ $playbook.mongodb.port }})"]
                   - insecure_skip_verify = true
-  requirements: |
-    - src: https://github.com/yunionio/ansible-role-mongodb
-    - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: onecloud_vm_id  
       required: true

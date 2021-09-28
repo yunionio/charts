@@ -72,9 +72,6 @@ spec:
               - plugin: postgresql
                 config:
                   - address = "postgres://postgres@127.0.0.1:5432?sslmode=disable"
-  requirements: |
-    - name: geerlingguy.postgresql
-    - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: onecloud_vm_id  
       required: true

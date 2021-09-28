@@ -49,11 +49,11 @@ spec:
             pypi_custom_host: "{{`{{ repo_url }}`}}"
             {{- if $playbook.mysql.databases }}
             mysql_databases:
-              {{- toYaml $playbook.mysql.databases | nindent 10 }}
+              {{- toYaml $playbook.mysql.databases | nindent 14 }}
             {{- end }}
             {{- if $playbook.mysql.users }}
             mysql_users:
-              {{- toYaml $playbook.mysql.users | nindent 10 }}
+              {{- toYaml $playbook.mysql.users | nindent 14 }}
             {{- end }}
             mysql_daemon: mysqld
         
@@ -81,10 +81,6 @@ spec:
                 config:
                   - servers = ["root:{{ $playbook.mysql.root_password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
                   - insecure_skip_verify = true
-  requirements: |
-    - name: onecloud-mysql
-      src: https://github.com/yunionio/ansible-role-mysql
-    - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: onecloud_vm_id  
       required: true

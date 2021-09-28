@@ -75,9 +75,6 @@ spec:
                   - password = "{{ $playbook.redis.password }}"
                   {{- end }}
                   - insecure_skip_verify = true
-  requirements: |
-    - src: https://github.com/yunionio/ansible-role-redis
-    - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: redis_slave
       required: false

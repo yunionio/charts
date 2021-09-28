@@ -90,9 +90,6 @@ spec:
                   - username = "{{ $playbook.rabbitmq.adminUsername }}"
                   - password = "{{ $playbook.rabbitmq.adminPassword }}"
                   - insecure_skip_verify = true
-  requirements: |
-    - src: https://github.com/yunionio/ansible-rabbitmq
-    - src: https://github.com/yunionio/ansible-telegraf
   vars:
     - name: onecloud_vm_id  
       required: true
