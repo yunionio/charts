@@ -93,46 +93,20 @@
                     "properties": {
                         "mysql": {
                             "type": "object",
-                            "title": "MariaDB配置",
-                            "required": [
-                                "port",
-                                "root_password"
-                            ],
+                            "title": "Postgresql配置",
                             "properties": {
-                                "port": {
-                                    "title": "端口",
-                                    "default": 3306,
-                                    "type": "integer"
-                                },
-                                "root_password": {
-                                    "title": "Root密码",
-                                    "default": "admin",
-                                    "type": "string"
-                                },
                                 "databases": {
                                     "title": "新建数据库",
                                     "type": "array",
                                     "items": {
                                         "type": "object",
                                         "required": [
-                                            "name",
-                                            "encoding",
-                                            "collation"
+                                            "name"
                                         ],
                                         "properties": {
                                             "name": {
                                                 "title": "名称",
                                                 "description": "数据库的名称",
-                                                "type": "string"
-                                            },
-                                            "encoding": {
-                                                "title": "编码",
-                                                "default": "utf8",
-                                                "type": "string"
-                                            },
-                                            "collation": {
-                                                "title": "比较方法",
-                                                "default": "utf8_general_ci",
                                                 "type": "string"
                                             }
                                         }
@@ -145,9 +119,7 @@
                                         "type": "object",
                                         "required": [
                                             "name",
-                                            "password",
-                                            "host",
-                                            "priv"
+                                            "password"
                                         ],
                                         "properties": {
                                             "name": {
@@ -157,36 +129,9 @@
                                             "password": {
                                                 "title": "用户密码",
                                                 "type": "string"
-                                            },
-                                            "host": {
-                                                "title": "主机名",
-                                                "default": "localhost",
-                                                "type": "string"
-                                            },
-                                            "priv": {
-                                                "title": "权限",
-                                                "default": "*.*:USAGE",
-                                                "type": "string"
                                             }
                                         }
                                     }
-                                }
-                            }
-                        },
-                        "telegraf": {
-                            "type": "object",
-                            "title": "监控配置",
-                            "description": "应用的监控数据会被采集到填写的InfluxDB数据库中，如果未填写，不会采集监控数据",
-                            "properties": {
-                                "influxdbName": {
-                                    "title": "InfluxDB数据库名称",
-                                    "default": "telegraf",
-                                    "type": "string"
-                                },
-                                "influxdbUrl": {
-                                    "title": "InfluxDB的地址",
-                                    "default": "https://27.159.75.106:30086",
-                                    "type": "string"
                                 }
                             }
                         }
@@ -196,3 +141,4 @@
         }
     }
 }
+

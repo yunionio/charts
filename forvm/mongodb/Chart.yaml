@@ -1,0 +1,10 @@
+apiVersion: v2
+name: onecloud-mongodb
+description: MongoDB 5.0
+icon: https://webimages.mongodb.com/_com_assets/cms/kpo5kblefbjq79065-Horizontal_Default.svg?auto=format%252Ccompress
+
+type: application
+
+version: 0.2.0
+
+appVersion: 5.0

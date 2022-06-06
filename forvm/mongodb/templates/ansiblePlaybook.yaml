@@ -5,19 +5,19 @@
 apiVersion: onecloud.yunion.io/v1
 kind: AnsiblePlaybook
 metadata:
-  name: ms-{{ $name }}-pk
+  name: mg-{{ $name }}-pk
 spec:
   playbookTemplateRef:
-    name: ms-{{ $name }}-pktem
+    name: mg-{{ $name }}-pktem
   inventory:
     - virtualMachine:
-        name: ms-{{ $name }}
+        name: mg-{{ $name }}
   vars:
     onecloud_vm_id:
       reference:
         kind: VirtualMachine
         namespace: {{ $namespace }}
-        name: ms-{{ $name }}
+        name: mg-{{ $name }}
         fieldPath: Status.ExternalInfo.Id
     {{- if $values.envs.project_id }}
     onecloud_tenant_id:

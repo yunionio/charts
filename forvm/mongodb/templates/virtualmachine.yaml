@@ -1,17 +1,15 @@
 {{- $name := .Release.Name -}}
-{{- $node := .Values.virtualMachines.masterNode -}}
-{{- $suffix := "master" }}
-{{- $desc := "Redis master node" }}
+{{- $node := .Values.virtualMachine -}}
+{{- $desc := "Mongodb" }}
 {{- $needEipHypers := list "aliyun" "qcloud" "azure" "aws" "huawei" "ucloud" "google" "openstack" "zstack"}}
 {{- $imageDict := dict "aliyun" "CentOS  7.3 64位" "huawei" "CentOS 7.3 64bit" "qcloud" "CentOS 7.3 64位" "aws" "CentOS 7 x86_64 GenericCloud 1808" "azure" "CentOS-7.7-7.7.2021020400" "google" "centos-7-v20200811" "hcso" "CentOS-7-x86_64-GenericCloud-2009.qcow2" }} {{- $image := get $imageDict .Values.hypervisor }}
 {{- if eq $image ""}}
 {{- $image = "CentOS-7.6.1810-20190430.qcow2" }}
 {{- end }}
-{{- $prefixImage := substr 0 1 $node.instanceType }}
 apiVersion: onecloud.yunion.io/v1
 kind: VirtualMachine
 metadata:
-  name: rd-{{ $name }}-{{ $suffix }}
+  name: mg-{{ $name }}
 spec:
   description: {{ $desc }}
   projectConfig:
@@ -37,9 +35,7 @@ spec:
     vmemSizeGB: {{ $node.vmemSizeGB }}
     {{- end }}
     rootDisk:
-      {{- if eq $prefixImage "k" }}
-      image: CentOS-7-aarch64-GenericCloud-2009.qcow2
-      {{- else if $node.image }}
+      {{- if $node.image }}
       image: {{ $node.image }}
       {{- else }}
       image: {{ $image }}

@@ -3,7 +3,7 @@
 {{- $suffix := "master" }}
 {{- $desc := "Rabbitmq master node" }}
 {{- $needEipHypers := list "aliyun" "qcloud" "azure" "aws" "huawei" "ucloud" "google" "openstack" "zstack"}}
-{{- $imageDict := dict "aliyun" "CentOS  7.3 64位" "huawei" "CentOS 7.3 64bit" "qcloud" "CentOS 7.3 64位" "aws" "CentOS 7 x86_64 GenericCloud 1808" "azure" "CentOS-7.7-7.7.2021020400" "google" "centos-7-v20200811" }} {{- $image := get $imageDict .Values.hypervisor }}
+{{- $imageDict := dict "aliyun" "CentOS  7.3 64位" "huawei" "CentOS 7.3 64bit" "qcloud" "CentOS 7.3 64位" "aws" "CentOS 7 x86_64 GenericCloud 1808" "azure" "CentOS-7.7-7.7.2021020400" "google" "centos-7-v20200811" "hcso" "CentOS-7-x86_64-GenericCloud-2009.qcow2" }} {{- $image := get $imageDict .Values.hypervisor }}
 {{- if eq $image ""}}
 {{- $image = "CentOS-7.6.1810-20190430.qcow2" }}
 {{- end }}
@@ -50,25 +50,3 @@ spec:
     networks:
       - network: {{ .Values.network }}
     {{- end }}
-
-  {{- if or $node.newEipBw $node.newEipChargeType }}
-  newEip:
-    {{- if $node.newEipBw }}
-    bw: {{ $node.newEipBw }}
-    {{- end }}
-    {{- if $node.newEipChargeType }}
-    chargeType: {{ $node.newEipChargeType }}
-    {{- end }}
-  {{- else if $node.eip }}
-  eip: $node.eip
-  {{- else if eq .Values.vpc "default" }}
-  {{- else if not (empty .Values.vpc) }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- else if has .Values.hypervisor $needEipHypers }}
-  newEip:
-    bw: 100
-    chargeType: traffic
-  {{- end}}
-  

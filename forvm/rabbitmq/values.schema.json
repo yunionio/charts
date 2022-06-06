@@ -123,21 +123,6 @@
                                             "type": "integer"
                                         }
                                     }
-                                },
-                                "telegraf": {
-                                    "type": "object",
-                                    "title": "监控配置",
-                                    "description": "应用的监控数据会被采集到填写的InfluxDB数据库中，如果未填写，不会采集监控数据",
-                                    "properties": {
-                                        "influxdbName": {
-                                            "title": "InfluxDB数据库名称",
-                                            "type": "string"
-                                        },
-                                        "influxdbUrl": {
-                                            "title": "InfluxDB的地址",
-                                            "type": "string"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -148,15 +133,12 @@
                     "title": "子节点",
                     "required": [
                         "count",
-                        "instanceType",
-                        "image",
-                        "diskSizeGB",
-                        "storageBackend"
+                        "diskSizeGB"
                     ],
                     "properties": {
                         "count": {
                             "title": "数量",
-                            "default": 2,
+                            "default": 0,
                             "type": "integer"
                         },
                         "instanceType": {

@@ -17,7 +17,6 @@ spec:
     - virtualMachine:
         name: rm-{{ $name }}-slave{{ add $e 1 }}
     {{- end }}
-  {{- if .telegraf }}
   vars:
     onecloud_vm_id:
       reference:
@@ -33,7 +32,11 @@ spec:
     onecloud_domain_id:
       value: {{ $values.envs.domain_id }}
     {{- end }}
-  {{- end }}
+  proxyVars:
+    - name: repo_url
+      service: repo
+    - name: influxdb_url
+      service: influxdb
   maxRetryTimes: 2
 {{- end}}
 

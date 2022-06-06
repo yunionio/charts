@@ -2,7 +2,7 @@
 apiVersion: onecloud.yunion.io/v1
 kind: AnsiblePlaybookTemplate
 metadata:
-  name: ms-{{ .Release.Name }}-pktem
+  name: mg-{{ .Release.Name }}-pktem
 spec:
   playbook: |
     - hosts: all
@@ -37,26 +37,19 @@ spec:
             gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
             file: CentOS-Base
 
-        - name: Setup MySQL
+        - name: Setup MongoDB 
           include_role:
-            name: onecloud-mysql
+            name: ansible-role-mongodb
           vars:
-            mysql_version: 5.7
-            mysql_repo: "{{`{{ repo_url }}`}}/mysql/yum/mysql-5.7-community-el7-x86_64/"
-            mysql_gpgkey: "{{`{{ repo_url }}`}}/mysql/RPM-GPG-KEY-mysql"
-            mysql_root_password: {{ $playbook.mysql.root_password }}
-            mysql_port: {{ $playbook.mysql.port }}
+            mongodb_version: "5.0"
+            mongodb_repo: "{{`{{ repo_url }}`}}/mongodb/yum/el$releasever"
             pypi_custom_host: "{{`{{ repo_url }}`}}"
-            {{- if $playbook.mysql.databases }}
-            mysql_databases:
-              {{- toYaml $playbook.mysql.databases | nindent 14 }}
-            {{- end }}
-            {{- if $playbook.mysql.users }}
-            mysql_users:
-              {{- toYaml $playbook.mysql.users | nindent 14 }}
-            {{- end }}
-            mysql_daemon: mysqld
-        
+            mongodb_pymongo_pip_version: 3.12.0
+            mongodb_net_port: {{ $playbook.mongodb.port }}
+            mongodb_user_admin_name: {{ $playbook.mongodb.user_admin_name }}
+            mongodb_user_admin_password: {{ $playbook.mongodb.user_admin_password }}
+            mongodb_root_admin_name: {{ $playbook.mongodb.root_admin_name }}
+            mongodb_root_admin_password: {{ $playbook.mongodb.root_admin_password }}
 
         - name: Setup Telegraf
           include_role:
@@ -66,7 +59,7 @@ spec:
             telegraf_agent_version_patch: 0
             telegraf_agent_package_method: offline
             telegraf_agent_package_local_dir: /opt/yunion/ansible-install-pkg
-            telegraf_agent_hostname: ms-{{ .Release.Name }}
+            telegraf_agent_hostname: mg-{{ .Release.Name }}
             telegraf_global_tags:
               - tag_name: release_name
                 tag_value: {{ .Release.Name }}
@@ -77,9 +70,9 @@ spec:
                   - database = "telegraf"
                   - insecure_skip_verify = true
             telegraf_plugins_default:
-              - plugin: mysql
+              - plugin: mongodb
                 config:
-                  - servers = ["root:{{ $playbook.mysql.root_password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
+                  - servers = ["mongodb://{{ $playbook.mongodb.root_admin_name }}:{{ $playbook.mongodb.root_admin_password }}@127.0.0.1:{{ $playbook.mongodb.port }})"]
                   - insecure_skip_verify = true
   vars:
     - name: onecloud_vm_id  

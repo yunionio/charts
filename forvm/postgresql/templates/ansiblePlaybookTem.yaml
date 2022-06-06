@@ -37,26 +37,18 @@ spec:
             gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
             file: CentOS-Base
 
-        - name: Setup MySQL
+        - name: Setup PostgreSQL
           include_role:
-            name: onecloud-mysql
+            name: geerlingguy.postgresql
           vars:
-            mysql_version: 5.7
-            mysql_repo: "{{`{{ repo_url }}`}}/mysql/yum/mysql-5.7-community-el7-x86_64/"
-            mysql_gpgkey: "{{`{{ repo_url }}`}}/mysql/RPM-GPG-KEY-mysql"
-            mysql_root_password: {{ $playbook.mysql.root_password }}
-            mysql_port: {{ $playbook.mysql.port }}
-            pypi_custom_host: "{{`{{ repo_url }}`}}"
-            {{- if $playbook.mysql.databases }}
-            mysql_databases:
-              {{- toYaml $playbook.mysql.databases | nindent 14 }}
+            {{- if $playbook.postgresql.databases }}
+            postgresql_databases:
+              {{- toYaml $playbook.postgresql.databases | nindent 10 }}
             {{- end }}
-            {{- if $playbook.mysql.users }}
-            mysql_users:
-              {{- toYaml $playbook.mysql.users | nindent 14 }}
+            {{- if $playbook.postgresql.users }}
+            postgresql_users:
+              {{- toYaml $playbook.postgresql.users | nindent 10 }}
             {{- end }}
-            mysql_daemon: mysqld
-        
 
         - name: Setup Telegraf
           include_role:
@@ -77,10 +69,9 @@ spec:
                   - database = "telegraf"
                   - insecure_skip_verify = true
             telegraf_plugins_default:
-              - plugin: mysql
+              - plugin: postgresql
                 config:
-                  - servers = ["root:{{ $playbook.mysql.root_password }}@tcp(127.0.0.1:{{ $playbook.mysql.port }})/?tls=false"]
-                  - insecure_skip_verify = true
+                  - address = "postgres://postgres@127.0.0.1:5432?sslmode=disable"
   vars:
     - name: onecloud_vm_id  
       required: true

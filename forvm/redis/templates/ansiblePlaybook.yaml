@@ -30,7 +30,6 @@ spec:
         namespace: {{ $namespace }}
         name: rd-{{ $name }}-master
         fieldPath: Status.ExternalInfo.Ips[0]
-    {{- if .telegraf }}
     onecloud_vm_id:
       reference:
         kind: VirtualMachine
@@ -45,7 +44,11 @@ spec:
     onecloud_domain_id:
       value: {{ $values.envs.domain_id }}
     {{- end }}
-    {{- end }}
+  proxyVars:
+    - name: repo_url
+      service: repo
+    - name: influxdb_url
+      service: influxdb
   maxRetryTimes: 2
 {{- end}}
 
