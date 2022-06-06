@@ -60,7 +60,7 @@ spec:
       type: file
     {{- if $playbook.telegraf }}
     #- src: https://github.com/yunionio/ansible-telegraf
-    - src: https://iso.yunion.cn/vm-images/ansible-telegraf.tar.gz
+    - src: https://iso.yunion.cn/vm-images/ansible-telegraf-1.0.0.tar.gz
       name: ansible-telegraf
       type: file
   vars:
