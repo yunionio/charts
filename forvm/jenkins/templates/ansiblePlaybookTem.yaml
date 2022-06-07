@@ -41,10 +41,16 @@ spec:
         - role: ansible-telegraf
         {{- end }}
   requirements: |
-    - src: geerlingguy.java
-    - src: https://github.com/yunionio/ansible-role-jenkins
+    - src: https://iso.yunion.cn/vm-images/ansible-role-java-2.1.0.tar.gz
+      name: geerlingguy.java
+      type: file
+    - src: https://iso.yunion.cn/vm-images/ansible-role-jenkins-v0.0.1-yn.tar.gz
+      name: ansible-role-jenkins
+      type: file
     {{- if $playbook.telegraf }}
-    - src: https://github.com/yunionio/ansible-telegraf
+    - src: https://iso.yunion.cn/vm-images/ansible-telegraf-1.0.0.tar.gz
+      name: ansible-telegraf
+      type: file
     {{- end }}
   vars:
     - name: jenkins_hostname

@@ -9,33 +9,33 @@ spec:
       become: true
 
       tasks:
-        - name: Check if backup
-          stat:
-            path: /etc/yum.repos.d/CentOS-Base.repo.bk
-          register: bk_status
-
-        - name: Backup origin repository
-          command: mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bk
-          when: bk_status.stat.exists == False
-          failed_when: False
-
-        - name: Add base repository
-          yum_repository:
-            name: base
-            description: CentOS-$releasever - Base
-            baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/os/$basearch/"
-            gpgcheck: yes
-            gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-            file: CentOS-Base
-
-        - name: Add updates repository
-          yum_repository:
-            name: updates
-            description: CentOS-$releasever - Updates
-            baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/updates/$basearch/"
-            gpgcheck: yes
-            gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-            file: CentOS-Base
+        # - name: Check if backup
+        #   stat:
+        #     path: /etc/yum.repos.d/CentOS-Base.repo.bk
+        #   register: bk_status
+        #
+        # - name: Backup origin repository
+        #   command: mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bk
+        #   when: bk_status.stat.exists == False
+        #   failed_when: False
+        #
+        # - name: Add base repository
+        #   yum_repository:
+        #     name: base
+        #     description: CentOS-$releasever - Base
+        #     baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/os/$basearch/"
+        #     gpgcheck: yes
+        #     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+        #     file: CentOS-Base
+        #
+        # - name: Add updates repository
+        #   yum_repository:
+        #     name: updates
+        #     description: CentOS-$releasever - Updates
+        #     baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/updates/$basearch/"
+        #     gpgcheck: yes
+        #     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+        #     file: CentOS-Base
 
         - name: Setup PostgreSQL
           include_role:
@@ -50,28 +50,32 @@ spec:
               {{- toYaml $playbook.postgresql.users | nindent 10 }}
             {{- end }}
 
-        - name: Setup Telegraf
-          include_role:
-            name: ansible-telegraf
-          vars:
-            telegraf_agent_version: 1.19.2-yn~fe11a96b
-            telegraf_agent_version_patch: 0
-            telegraf_agent_package_method: offline
-            telegraf_agent_package_local_dir: /opt/yunion/ansible-install-pkg
-            telegraf_agent_hostname: ms-{{ .Release.Name }}
-            telegraf_global_tags:
-              - tag_name: release_name
-                tag_value: {{ .Release.Name }}
-            telegraf_agent_output:
-              - type: influxdb
-                config:
-                  - urls = ["{{`{{ influxdb_url }}`}}"]
-                  - database = "telegraf"
-                  - insecure_skip_verify = true
-            telegraf_plugins_default:
-              - plugin: postgresql
-                config:
-                  - address = "postgres://postgres@127.0.0.1:5432?sslmode=disable"
+        # - name: Setup Telegraf
+        #   include_role:
+        #     name: ansible-telegraf
+        #   vars:
+        #     telegraf_agent_version: 1.19.2-yn~fe11a96b
+        #     telegraf_agent_version_patch: 0
+        #     telegraf_agent_package_method: offline
+        #     telegraf_agent_package_local_dir: /opt/yunion/ansible-install-pkg
+        #     telegraf_agent_hostname: ms-{{ .Release.Name }}
+        #     telegraf_global_tags:
+        #       - tag_name: release_name
+        #         tag_value: {{ .Release.Name }}
+        #     telegraf_agent_output:
+        #       - type: influxdb
+        #         config:
+        #           - urls = ["{{`{{ influxdb_url }}`}}"]
+        #           - database = "telegraf"
+        #           - insecure_skip_verify = true
+        #     telegraf_plugins_default:
+        #       - plugin: postgresql
+        #         config:
+        #           - address = "postgres://postgres@127.0.0.1:5432?sslmode=disable"
+  requirements: |
+    - src: https://iso.yunion.cn/vm-images/ansible-role-postgresql-3.2.1.tar.gz
+      name: geerlingguy.postgresql
+      type: file
   vars:
     - name: onecloud_vm_id  
       required: true
