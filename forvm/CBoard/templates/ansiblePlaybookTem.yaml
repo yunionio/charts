@@ -10,7 +10,9 @@ spec:
       roles:
         - role: ansible-cboard
   requirements: |
-    - src: https://github.com/yunionio/ansible-cboard
+    - src: https://iso.yunion.cn/vm-images/ansible-cboard-v0.0.1-yn.tar.gz
+      name: ansible-cboard
+      type: file
   vars:
     - name: port
       required: false

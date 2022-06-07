@@ -5,6 +5,6 @@ icon: https://www.postgresql.org/media/img/about/press/elephant.png
 
 type: application
 
-version: 0.2.0
+version: 0.3.0
 
 appVersion: 9.2

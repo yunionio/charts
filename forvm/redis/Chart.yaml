@@ -2,7 +2,8 @@
 apiVersion: v2
 name: onecloud-redis
 description: Redis 2.8
-icon: https://redis.io/images/redis.png
+# icon: https://redis.io/images/redis.png
+icon: https://download.logo.wine/logo/Redis/Redis-Logo.wine.png
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -16,7 +17,7 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.2.0
+version: 0.3.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.

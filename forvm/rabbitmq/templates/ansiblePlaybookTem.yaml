@@ -10,43 +10,45 @@ spec:
       become: true
 
       tasks:
-        - name: Check if backup
-          stat:
-            path: /etc/yum.repos.d/CentOS-Base.repo.bk
-          register: bk_status
-
-        - name: Backup origin repository
-          command: mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bk
-          when: bk_status.stat.exists == False
-          failed_when: False
-
-        - name: Add base repository
-          yum_repository:
-            name: base
-            description: CentOS-$releasever - Base
-            baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/os/$basearch/"
-            gpgcheck: yes
-            gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-            file: CentOS-Base
-
-        - name: Add updates repository
-          yum_repository:
-            name: updates
-            description: CentOS-$releasever - Updates
-            baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/updates/$basearch/"
-            gpgcheck: yes
-            gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-            file: CentOS-Base
-
+        # - name: Check if backup
+        #   stat:
+        #     path: /etc/yum.repos.d/CentOS-Base.repo.bk
+        #   register: bk_status
+        #
+        # - name: Backup origin repository
+        #   command: mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bk
+        #   when: bk_status.stat.exists == False
+        #   failed_when: False
+        #
+        # - name: Add base repository
+        #   yum_repository:
+        #     name: base
+        #     description: CentOS-$releasever - Base
+        #     baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/os/$basearch/"
+        #     gpgcheck: yes
+        #     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+        #     file: CentOS-Base
+        #
+        # - name: Add updates repository
+        #   yum_repository:
+        #     name: updates
+        #     description: CentOS-$releasever - Updates
+        #     baseurl: "{{`{{ repo_url }}`}}/centos/$releasever/updates/$basearch/"
+        #     gpgcheck: yes
+        #     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+        #     file: CentOS-Base
+        #
         - name: Setup Rabbitmq
           include_role:
             name: ansible-rabbitmq
           vars:
             rabbitmq_redhat_version: 3.9.5
-            rabbitmq_redhat_url: "{{`{{ repo_url }}`}}/rabbitmq/downloads/v3.9.5"
-            rabbitmq_redhat_package: rabbitmq-server-3.9.5-1.el7.noarch.rpm
-            erlang_solutions_redhat_repo_url: "{{`{{ repo_url }}`}}/erlang-solutions/centos/$releasever"
-            rabbitmq_redhat_repo_key: "{{`{{ repo_url }}`}}/rabbitmq/downloads/rabbitmq-release-signing-key.asc"
+            # rabbitmq_redhat_url: "{{`{{ repo_url }}`}}/rabbitmq/downloads/v3.9.5"
+            rabbitmq_redhat_url: "https://packagecloud.io/rabbitmq/rabbitmq-server/packages/el/7/rabbitmq-server-3.9.5-1.el7.noarch.rpm"
+            rabbitmq_redhat_package: "download.rpm"
+            # erlang_solutions_redhat_repo_url: "{{`{{ repo_url }}`}}/erlang-solutions/centos/$releasever"
+            # erlang_solutions_redhat_repo_url: "{{`{{ repo_url }}`}}/erlang-solutions/centos/$releasever"
+            # rabbitmq_redhat_repo_key: "{{`{{ repo_url }}`}}/rabbitmq/downloads/rabbitmq-release-signing-key.asc"
             {{- if $playbook.rabbitmq.config }}
             rabbitmq_config:
               {{- toYaml .playbook.rabbitmq.config | nindent 8 }}
@@ -66,30 +68,30 @@ spec:
                 read_priv: ".*"
                 write_priv: ".*"
                 tags: administrator
-        - name: Setup Telegraf
-          include_role:
-            name: ansible-telegraf
-          vars:
-            telegraf_agent_version: 1.19.2-yn~fe11a96b
-            telegraf_agent_version_patch: 0
-            telegraf_agent_package_method: offline
-            telegraf_agent_package_local_dir: /opt/yunion/ansible-install-pkg
-            tenegraf_agent_hostname: rm-{{ .Release.Name }}-master
-            telegraf_global_tags:
-              - tag_name: release_name
-                tag_value: {{ .Release.Name }}
-            telegraf_agent_output:
-              - type: influxdb
-                config:
-                  - urls = ["{{`{{ influxdb_url }}`}}"]
-                  - database = "telegraf"
-                  - insecure_skip_verify = true
-            telegraf_plugins_default:
-              - plugin: rabbitmq
-                config:
-                  - username = "{{ $playbook.rabbitmq.adminUsername }}"
-                  - password = "{{ $playbook.rabbitmq.adminPassword }}"
-                  - insecure_skip_verify = true
+        # - name: Setup Telegraf
+        #   include_role:
+        #     name: ansible-telegraf
+        #   vars:
+        #     telegraf_agent_version: 1.19.2-yn~fe11a96b
+        #     telegraf_agent_version_patch: 0
+        #     telegraf_agent_package_method: offline
+        #     telegraf_agent_package_local_dir: /opt/yunion/ansible-install-pkg
+        #     tenegraf_agent_hostname: rm-{{ .Release.Name }}-master
+        #     telegraf_global_tags:
+        #       - tag_name: release_name
+        #         tag_value: {{ .Release.Name }}
+        #     telegraf_agent_output:
+        #       - type: influxdb
+        #         config:
+        #           - urls = ["{{`{{ influxdb_url }}`}}"]
+        #           - database = "telegraf"
+        #           - insecure_skip_verify = true
+        #     telegraf_plugins_default:
+        #       - plugin: rabbitmq
+        #         config:
+        #           - username = "{{ $playbook.rabbitmq.adminUsername }}"
+        #           - password = "{{ $playbook.rabbitmq.adminPassword }}"
+        #           - insecure_skip_verify = true
   vars:
     - name: onecloud_vm_id  
       required: true
@@ -97,4 +99,7 @@ spec:
       required: true
     - name: onecloud_domain_id
       required: true
-
+  requirements: |
+    - src: https://iso.yunion.cn/vm-images/ansible-rabbitmq-v0.0.1-yn.tar.gz
+      name: ansible-rabbitmq
+      type: file
