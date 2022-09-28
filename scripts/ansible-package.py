@@ -38,7 +38,7 @@ packages = [
     Package("ansible-telegraf", "yunionio", "1.0.0"),
     Package("ansible-bootstrap-python", "mrlesmithjr", "master"),
     Package("ansible-cboard", "yunionio", "v0.0.1-yn"),
-    Package("ansible-role-jenkins", "yunionio", "v0.0.1-yn"),
+    Package("ansible-role-jenkins", "yunionio", "v0.0.2-yn"),
     Package("ansible-influxdb", "yunionio", "v0.0.1-yn"),
     Package("ansible-rabbitmq", "yunionio", "v0.0.1-yn"),
     Package("ansible-role-redis", "yunionio", "v0.0.1-yn"),
