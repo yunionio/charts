@@ -1,5 +1,7 @@
 #!/bin/sh
 
+### Deprecated ###
+
 # For All: ./push.sh forvm 
 # Others: ./push.sh forvm/jenkins
 
