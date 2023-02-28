@@ -48,7 +48,7 @@ spec:
       name: zaxos.tomcat-ansible-role
       type: file
     {{- if $playbook.telegraf }}
-    - src: https://iso.yunion.cn/vm-images/ansible-telegraf-1.0.0.tar.gz
+    - src: https://iso.yunion.cn/vm-images/ansible-telegraf-1.0.1.tar.gz
       name: ansible-telegraf
       type: file
   vars:

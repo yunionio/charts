@@ -103,7 +103,7 @@
                                 },
                                 "influxdbUrl": {
                                     "title": "InfluxDB的地址",
-                                    "default": "https://27.159.75.106:30086",
+                                    "default": "https://159.27.56.102:30086",
                                     "type": "string"
                                 }
                             }
