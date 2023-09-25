@@ -12,7 +12,8 @@ spec:
         jenkins_plugins:
           - swarm
         jenkins_plugin_timeout: 200
-        jenkins_version: "2.204"
+        jenkins_version: "2.204.1"
+        jenkins_pkg_url: "https://archives.jenkins-ci.org/redhat-stable"
         {{- if $playbook.telegraf }}
         telegraf_agent_hostname: jk-{{ .Release.Name }}-master
         telegraf_global_tags:
