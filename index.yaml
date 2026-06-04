@@ -6,7 +6,7 @@ entries:
     created: "2023-09-25T13:53:08.359835+08:00"
     description: 'A Helm chart for CBoard: https://github.com/TuiQiao/CBoard'
     digest: 928744b6017367e13cec41b9a3dd541193a74cf358ca96f3f874324761ce76ca
-    icon: https://iso.yunion.cn/vm-images/cboard.png
+    icon: icons/cboard.png
     name: CBoard
     type: application
     urls:
@@ -69,7 +69,7 @@ entries:
     created: "2023-09-25T13:53:08.360671+08:00"
     description: A Helm chart for influxdb on Onecloud
     digest: 20140bfd616ff5b97a75702abfde57a86bc88a6475db51d6dae53cc6a8b57112
-    icon: https://influxdata.github.io/branding/img/downloads/influxdb-logo--preview.svg
+    icon: icons/influxdb-logo--preview.svg
     name: onecloud-influxdb
     type: application
     urls:
@@ -125,7 +125,7 @@ entries:
     created: "2023-09-25T13:53:08.362519+08:00"
     description: A Helm chart for Jenkins on Onecloud
     digest: 9641dfd37d6a356aa6c88772e78c60fc18ec8b712adf5c76f2a5e97d5b4aa0a5
-    icon: https://mirrors.tuna.tsinghua.edu.cn/jenkins/art/jenkins-logo/256x256/logo.png
+    icon: icons/jenkins-logo.png
     name: onecloud-jenkins
     type: application
     urls:
@@ -224,7 +224,7 @@ entries:
     created: "2023-09-25T13:53:08.36392+08:00"
     description: A Helm chart for Mariadb on Onecloud
     digest: b76512548d1c1bd0b551848f1e733de8424e2fcfd1e52c768f62e8112f09c991
-    icon: https://mariadb.org/wp-content/themes/twentynineteen-child/icons/mariadb_org_rgb_h.svg
+    icon: icons/mariadb_org_rgb_h.svg
     name: onecloud-mariadb
     type: application
     urls:
@@ -286,7 +286,7 @@ entries:
     created: "2023-09-25T13:53:08.364247+08:00"
     description: MongoDB 5.0
     digest: 10980d70a9b022564dc0ea102231a1cba932012b9e02f89064a4bc942ad9f568
-    icon: https://webimages.mongodb.com/_com_assets/cms/kpo5kblefbjq79065-Horizontal_Default.svg?auto=format%252Ccompress
+    icon: icons/mongodb-Horizontal_Default.svg
     name: onecloud-mongodb
     type: application
     urls:
@@ -309,7 +309,7 @@ entries:
     created: "2023-09-25T13:53:08.365107+08:00"
     description: MySQL 5.7
     digest: d12cfbe2b02052459f57af63c76daf5b6c567f2e37f2d3d1afdbda36ce4fa0cc
-    icon: https://labs.mysql.com/common/logos/mysql-logo.svg
+    icon: icons/mysql-logo.svg
     name: onecloud-mysql
     type: application
     urls:
@@ -365,7 +365,7 @@ entries:
     created: "2023-09-25T13:53:08.366431+08:00"
     description: A Helm chart for Nginx on Onecloud
     digest: dd183caa62fb85c7c46c2bcbc3c9100e1590b457f2f097d7ff0e83a3a15e9c45
-    icon: https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg
+    icon: icons/NGINX.svg
     name: onecloud-nginx
     type: application
     urls:
@@ -454,7 +454,7 @@ entries:
     created: "2023-09-25T13:53:08.366751+08:00"
     description: PostgreSQL 9.2
     digest: 7f6b2d22a8d2a3f78e2e8b18b7e11d8873ac912e49571904dc24ceaca416573d
-    icon: https://www.postgresql.org/media/img/about/press/elephant.png
+    icon: icons/PostgresSQL.svg
     name: onecloud-postgresql
     type: application
     urls:
@@ -477,7 +477,7 @@ entries:
     created: "2023-09-25T13:53:08.368186+08:00"
     description: RabbitMQ 3.9
     digest: ae9a5ebd48d1cb8c613d4436d2439d1a2118ccf7b13037fae6a5fff0352f5bd5
-    icon: https://www.rabbitmq.com/img/RabbitMQ-logo.svg
+    icon: icons/RabbitMQ.svg
     name: onecloud-rabbitmq
     type: application
     urls:
@@ -533,7 +533,7 @@ entries:
     created: "2023-09-25T13:53:08.369165+08:00"
     description: Redis 2.8
     digest: 12a3902d18efac2d45f1ffe4dea69aaa396357fcf7db9a547f2056003fdf6cbf
-    icon: https://download.logo.wine/logo/Redis/Redis-Logo.wine.png
+    icon: icons/Redis-Logo.wine.png
     name: onecloud-redis
     type: application
     urls:
@@ -586,7 +586,7 @@ entries:
     created: "2023-09-25T13:53:08.370154+08:00"
     description: A Helm chart for Tomcat on Onecloud
     digest: 0cf66e6deab484e3b20c5b609a5f71e88fd06e05d4635e21ae14ba526f3bb994
-    icon: http://tomcat.apache.org/res/images/tomcat.png
+    icon: icons/tomcat.png
     name: onecloud-tomcat
     type: application
     urls:
